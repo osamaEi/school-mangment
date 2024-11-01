@@ -26,7 +26,39 @@
                             </ul>
                         </div>
                     @endif
-
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0"><i class="fas fa-camera me-2"></i>Profile Photo</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center">
+                                    <div class="position-relative d-inline-block">
+                                        <img id="photoPreview" 
+                                             src="{{ asset('images/default-user.png') }}" 
+                                             class="rounded-circle mb-3" 
+                                             width="150" height="150"
+                                             style="object-fit: cover; border: 3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                                        <div class="small text-muted">Preview</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label class="form-label">Choose Profile Photo</label>
+                                        <input type="file" class="form-control @error('photo') is-invalid @enderror" 
+                                               id="photoInput" name="photo" accept="image/*">
+                                        <div class="form-text">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Recommended: Square image, max 2MB (JPG, PNG, GIF)
+                                        </div>
+                                        @error('photo')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <form method="POST" action="{{ route('Adminteacher.store') }}" class="needs-validation" novalidate>
                         @csrf
                         

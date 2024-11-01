@@ -89,7 +89,10 @@
                     </div>
     
                     <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                      <form action="actions/login.php" method="POST" class="form-box">
+
+
+                      <form action="{{route('login')}}" method="POST" class="form-box">
+                        @csrf
                         <h3 class="h4 text-black mb-4">Log IN</h3>
                         <div class="form-group">
                           <input type="text" name ="email" class="form-control" placeholder="Email Addresss">

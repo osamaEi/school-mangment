@@ -28,30 +28,15 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 
-    @yield('additional_css')
+    @stack('styles')
 
     
     <!-- Custom style for RTL -->
   
   
- <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 
 
-<style>
-  .btn-pink {
-      background-color: #f0657c; /* Pink color code */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      padding: 8px 16px; /* Padding */
-      border-radius: 4px; /* Rounded corners */
-      cursor: pointer; /* Cursor style */
-  }
-
-  /* Hover effect */
-  .btn-pink:hover {
-      background-color: #f0657c; /* Darker pink on hover */
-  }
-</style>
 
   </head>

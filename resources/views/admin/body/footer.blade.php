@@ -62,7 +62,7 @@
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 
-@yield('additional_js')
+@stack('scripts')
 
 <!-- ChartJS -->
 

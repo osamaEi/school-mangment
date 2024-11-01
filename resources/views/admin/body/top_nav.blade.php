@@ -22,14 +22,9 @@
   <!-- SEARCH FORM -->
 
 
-  @if(session('locale') == 'en')
   
   <ul class="navbar-nav ml-auto"   style="margin-right: 100px;">
-    @else
 
-  <ul class="navbar-nav mr-auto-navbav" style="margin-left: 100px;">
-
-    @endif
     <!-- Messages Dropdown Menu -->
 
     <div class="btn-group">
@@ -53,7 +48,7 @@
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-success">
     
-        <i class="bx bx-user"></i> {{ Auth::user()->name }}
+        <i class="bx bx-user"></i> {{ Auth::user()->getFullNameAttribute() }}
 
     
       </button>
