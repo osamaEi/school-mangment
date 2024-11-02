@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SubjectFile extends Model
@@ -29,5 +30,12 @@ class SubjectFile extends Model
     public function uploader()
     {
         return $this->belongsTo(User::class, 'uploaded_by');
+    }
+
+    
+   
+    public function getFileUrl()
+    {
+        return Storage::url($this->file_path);
     }
 }

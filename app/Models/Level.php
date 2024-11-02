@@ -15,12 +15,12 @@ class Level extends Model
     // Relationships
     public function subjects()
     {
-        return $this->hasMany(Subject::class);
+        return $this->hasMany(Subject::class,'level_id');
     }
 
     public function students()
     {
-        return $this->belongsToMany(User::class, 'student_levels', 'level_id', 'student_id')
+        return $this->belongsToMany(User::class, 'student_level', 'level_id', 'student_id')
                     ->withPivot('status', 'enrolled_at', 'completed_at')
                     ->withTimestamps();
     }

@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\languageController;
+use App\Http\Controllers\SubjectFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,3 +83,9 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('Adminlevel', LevelController::class);
+    Route::resource('Adminsubject', SubjectController::class);
+    Route::resource('Adminsubject-file', SubjectFileController::class);
+});
