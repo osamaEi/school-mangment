@@ -309,7 +309,7 @@
     </div>
 </div>
 
-@push('styles')
+@push('styles') 
 <style>
     .timeline {
         position: relative;

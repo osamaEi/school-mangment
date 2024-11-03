@@ -28,7 +28,7 @@
     <!-- Messages Dropdown Menu -->
 
     <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-success">
+      <button type="button" class="btn btn-sm btn-primary">
           @if(session('locale') == 'ar')
               AR
           @else
@@ -46,7 +46,7 @@
   </div>
   
     <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-success">
+      <button type="button" class="btn btn-sm btn-dark">
     
         <i class="bx bx-user"></i> {{ Auth::user()->getFullNameAttribute() }}
 
@@ -56,10 +56,15 @@
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu" role="menu">
-
+        <a class="dropdown-item" href="{{ route('profile.view') }}"">
+          <i class="bx bx-log-out-circle"></i> profile
+      </a>
     <div class="dropdown-divider"></div>
     
-
+    <a class="dropdown-item" href="{{ route('profile.ChangePassword') }}"">
+      <i class="bx bx-log-out-circle"></i> change password
+  </a>
+<div class="dropdown-divider"></div>
  
     @auth
     <a class="dropdown-item" href="{{ route('logout') }}"

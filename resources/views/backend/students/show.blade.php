@@ -1,4 +1,3 @@
-{{-- resources/views/backend/students/show.blade.php --}}
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
@@ -18,7 +17,8 @@
 
     <div class="row">
         <!-- Student Profile Card -->
-        <div class="col-xl-4">
+        <div class="col-12 col-md-4 col-lg-4"> 
+            
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
@@ -124,7 +124,8 @@
         </div>
 
         <!-- Academic Information -->
-        <div class="col-xl-8">
+        <div class="col-12 col-md-8 col-lg-8">
+            
             <!-- Current Level Card -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -265,8 +266,8 @@
                     @endif
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary"
+class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save me-1"></i>Change Level
                     </button>
@@ -316,58 +317,7 @@
 <!-- At the end of your layout file body -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@push('styles')
-<style>
-    .progress {
-        background-color: #e9ecef;
-        border-radius: 0.25rem;
-        height: 20px;
-    }
-    
-    .progress-bar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 0.875rem;
-    }
 
-    .badge {
-        padding: 0.5em 0.8em;
-    }
-
-    .list-group-item {
-        border-left: none;
-        border-right: none;
-    }
-
-    .chart-container {
-        position: relative;
-        height: 300px;
-    }
-
-    .status-badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 1;
-    }
-
-    .profile-photo {
-        position: relative;
-        display: inline-block;
-    }
-
-    .photo-upload-btn {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        border-radius: 50%;
-        padding: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-</style>
-@endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
