@@ -145,26 +145,10 @@
                             <div class="col-md-6">
                                 <h5 class="mb-1">{{ $currentLevel->name }}</h5>
                                 <p class="text-muted mb-0">
-                                    Enrolled: {{ $currentLevel->pivot->enrolled_at->format('M d, Y') }}
+                                    Enrolled: {{ $currentLevel->pivot->enrolled_at }}
                                 </p>
                             </div>
-                            <div class="col-md-6">
-                                <div class="progress" style="height: 20px;">
-                                    @php
-                                        $completedSubjects = $student->studentMarks()
-                                            ->where('subject_id', $currentLevel->subjects->pluck('id'))
-                                            ->distinct('subject_id')
-                                            ->count();
-                                        $totalSubjects = $currentLevel->subjects->count();
-                                        $progress = $totalSubjects > 0 ? ($completedSubjects / $totalSubjects) * 100 : 0;
-                                    @endphp
-                                    <div class="progress-bar bg-success" 
-                                         role="progressbar" 
-                                         style="width: {{ $progress }}%">
-                                        {{ number_format($progress, 1) }}% Complete
-                                    </div>
-                                </div>
-                            </div>
+                       
                         </div>
                     @else
                         <div class="text-center py-4">

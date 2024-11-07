@@ -41,16 +41,15 @@ class StudentController extends Controller
             'phone' => ['required', 'string', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
             'photo' => ['nullable', 'image', 'max:2048'],
-            'level_id' => ['required', 'exists:levels,id']
         ]);
-
+    
         $age = Carbon::parse($request->dob)->age;
-
+    
         // Handle photo upload
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('student-photos', 'public');
         }
-
+    
         $student = User::create([
             ...$validated,
             'age' => $age,
@@ -59,16 +58,17 @@ class StudentController extends Controller
             'photo' => $photoPath ?? null,
             'status' => true
         ]);
-
+    
         // Enroll student in selected level
         $student->studentLevels()->attach($request->level_id, [
             'status' => 'active',
             'enrolled_at' => now()
         ]);
-
+    
         return redirect()->route('Adminstudent.index')
             ->with('success', 'Student created successfully.');
     }
+    
 
     public function show($id)
     {
@@ -130,14 +130,11 @@ class StudentController extends Controller
             'password' => $request->password ? Hash::make($request->password) : $student->password
         ]);
 
-        // Update level if changed
         if ($request->level_id != $student->currentLevel()?->id) {
-            // Mark current level as completed
             $student->studentLevels()
                    ->wherePivot('status', 'active')
                    ->update(['status' => 'completed', 'completed_at' => now()]);
 
-            // Enroll in new level
             $student->studentLevels()->attach($request->level_id, [
                 'status' => 'active',
                 'enrolled_at' => now()

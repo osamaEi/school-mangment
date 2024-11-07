@@ -9,6 +9,8 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\languageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectFileController;
+use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Teacher\TeacherDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+   // return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
@@ -97,4 +99,22 @@ Route::get('/ChangePassword',[ProfileController::class,'ChangePassword'])->name(
 Route::post('/profile',[ProfileController::class,'ProfileStore'])->name('profile.store');
 Route::post('/PasswordUpdate',[ProfileController::class,'PasswordUpdate'])->name('profile.PasswordUpdate');
 
+});
+Route::middleware(['auth','roles:teacher'])->group(function () {
+
+    Route::get('/teacher/dashboard',[TeacherDashboardController::class,'index'])->name('teacher.dashboard');
+
+    Route::get('/teacher/students',[TeacherDashboardController::class,'showStudents'])->name('teacher.showStudents');
+    Route::get('teacher/subjects/{id}', [TeacherDashboardController::class, 'showSubject'])->name('teacher.subject.show');
+    Route::post('teacher/marks/{student}/store', [TeacherDashboardController::class, 'storeMark'])->name('teacher.marks.store');
+    
+});
+
+Route::middleware(['auth','roles:student'])->group(function () {
+
+    Route::get('/student/dashboard',[StudentDashboardController::class,'index'])->name('student.dashboard');
+
+
+
+    
 });

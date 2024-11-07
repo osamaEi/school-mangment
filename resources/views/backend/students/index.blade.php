@@ -59,7 +59,7 @@
                             @if($currentLevel = $student->currentLevel())
                                 <span class="badge bg-primary">{{ $currentLevel->name }}</span>
                                 <div class="text-muted small">
-                                    Since {{ $currentLevel->pivot->enrolled_at->format('M d, Y') }}
+                                    Since {{ $currentLevel->pivot->enrolled_at }}
                                 </div>
                             @else
                                 <span class="badge bg-secondary">No Active Level</span>
