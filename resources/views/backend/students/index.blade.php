@@ -70,7 +70,7 @@
                                 $averageScore = $student->studentMarks->avg('score');
                             @endphp
                             <div class="progress" style="height: 20px;">
-                                <div class="progress-bar {{ $averageScore >= 70 ? 'bg-success' : ($averageScore >= 50 ? 'bg-warning' : 'bg-danger') }}" 
+                                <div class="progress-bar {{ $averageScore >= 12 ? 'bg-success' : ($averageScore = 12 ? 'bg-warning' : 'bg-danger') }}" 
                                      role="progressbar" 
                                      style="width: {{ $averageScore }}%">
                                     {{ number_format($averageScore, 1) }}%
