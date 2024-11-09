@@ -30,6 +30,7 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
+        // Validate incoming request
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['nullable', 'string', 'max:255'],
@@ -40,28 +41,34 @@ class TeacherController extends Controller
             'email' => ['required', 'string', 'email', 'unique:users'],
             'phone' => ['required', 'string', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'photo' => ['nullable', 'image', 'max:2048'], // 2MB Max
+            'photo' => ['nullable', 'max:2048'], // Max 2MB image
         ]);
-    
+        
+        // Calculate age from the date of birth
         $age = \Carbon\Carbon::parse($request->dob)->age;
     
-        // Handle photo upload
-        if ($request->hasFile('photo')) {
+        // Handle photo upload if the file is present
+        $photoPath = null; // Default photo path
+    
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            // Store the photo in the 'teacher-photos' directory
             $photoPath = $request->file('photo')->store('teacher-photos', 'public');
         }
     
+        // Create the teacher user
         $teacher = User::create([
             ...$validated,
             'age' => $age,
             'role' => 'teacher',
             'password' => Hash::make($request->password),
-            'photo' => $photoPath ?? null,
+            'photo' => $photoPath, // Store the photo path in the database
         ]);
     
+        // Redirect back to the teacher index with success message
         return redirect()->route('Adminteacher.index')
             ->with('success', 'Teacher created successfully.');
     }
-   
+    
 
     public function show($id)
     {
@@ -165,24 +172,29 @@ class TeacherController extends Controller
     
 
 
-    public function destroy(User $teacher)
-    {
-        abort_if($teacher->role !== 'teacher', 404);
-
-        // Delete photo if exists
+public function destroy(User $teacher)
+{
+    try {
+        // Delete photo if it exists
         if ($teacher->photo) {
+            \Log::info('Deleting photo at: ' . $teacher->photo);  // Debugging line
             Storage::disk('public')->delete($teacher->photo);
         }
 
-        // Delete related records
         $teacher->teachingSubjects()->detach();
-        $teacher->marks()->delete();
         
         $teacher->delete();
 
+        // Redirect with success message
         return redirect()->route('Adminteacher.index')
             ->with('success', 'Teacher deleted successfully.');
+    } catch (\Exception $e) {
+        \Log::error('Error deleting teacher: ' . $e->getMessage());  // Log the error
+        return redirect()->route('Adminteacher.index')
+            ->with('error', 'Error deleting teacher.');
     }
+}
+
 
     // Additional Methods for new functionality
 

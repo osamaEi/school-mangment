@@ -1,5 +1,187 @@
 @extends('admin.index')
 @section('content')
+<style>
+/* Card Enhancements */
+.card {
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 2rem rgba(58, 59, 69, 0.2);
+}
+
+/* Profile Section */
+.profile-card {
+    background: linear-gradient(45deg, #4e73df, #224abe);
+    color: white;
+}
+
+.profile-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-image {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-image img {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image .camera-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #4e73df;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats Cards */
+.stat-card {
+    border-left: 4px solid;
+    margin-bottom: 1rem;
+}
+
+.stat-card-primary { border-left-color: #4e73df; }
+.stat-card-success { border-left-color: #1cc88a; }
+.stat-card-info { border-left-color: #36b9cc; }
+
+.stat-icon {
+    font-size: 2rem;
+    opacity: 0.4;
+}
+
+/* Performance Chart */
+.performance-card {
+    height: 100%;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+
+/* Marks Table */
+.marks-table th {
+    background-color: #f8f9fc;
+    border-top: none;
+}
+
+.marks-table td {
+    vertical-align: middle;
+}
+
+.score-badge {
+    padding: 0.5em 1em;
+    font-weight: 500;
+}
+
+/* Level Card */
+.level-card {
+    background: linear-gradient(45deg, #1cc88a, #169a6f);
+    color: white;
+}
+
+.level-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contact Info */
+.info-list .list-group-item {
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-list .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #858796;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animated-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Modals */
+.modal-content {
+    border: none;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background: #f8f9fc;
+}
+
+/* Status Switch */
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.5em;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-floating {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .stats-container {
+        margin-top: 1rem;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+</style>
 <div class="container-fluid px-4">
     <h1 class="mt-4">Student Details</h1>
     <ol class="breadcrumb mb-4">
@@ -303,7 +485,6 @@ class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 $(document).ready(function() {
@@ -409,5 +590,4 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
 });
 </script>
-@endpush
 @endsection

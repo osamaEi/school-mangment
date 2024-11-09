@@ -123,18 +123,18 @@
             </div>
             <div class="modal-body">
                 <div class="text-center mb-3">
-                    <img src="{{ $teacher->photo_url }}" 
-                         alt="{{ $teacher->full_name }}"
+                    <img src="{{ $teacher->getPhotoUrlteacher() }}" 
+                         alt="{{ $teacher->getFullNameAttribute() }}"
                          class="rounded-circle" 
                          width="100" height="100"
                          style="object-fit: cover;">
                 </div>
-                <p>Are you sure you want to delete teacher <strong>{{ $teacher->full_name }}</strong>?</p>
+                <p>Are you sure you want to delete teacher <strong>{{ $teacher->getFullNameAttribute() }}</strong>?</p>
                 <p class="text-danger"><small>This action cannot be undone.</small></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form action="{{ route('Adminteacher.destroy', $teacher) }}" method="POST" class="d-inline">
+                <form action="{{ route('Adminteacher.destroy', $teacher->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
@@ -161,7 +161,6 @@
 </style>
 @endpush
 
-@push('scripts')
 <script>
     $(document).ready(function() {
         $('#teachersTable').DataTable({
@@ -180,5 +179,5 @@
         });
     });
 </script>
-@endpush
+
 @endsection

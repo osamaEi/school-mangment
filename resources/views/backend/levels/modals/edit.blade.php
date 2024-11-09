@@ -5,7 +5,7 @@
                 <h5 class="modal-title">Edit Level</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form action="" method="POST">
+            <form action="{{ route('Adminlevel.update', $level->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

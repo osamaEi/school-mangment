@@ -15,8 +15,8 @@ class SubjectFileController extends Controller
     public function store(Request $request, Subject $subject)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx',
+            'title' => 'nullable',
+            'file' => 'required',
             'subject_id' =>'required|exists:subjects,id'
         ]);
 
@@ -31,11 +31,29 @@ class SubjectFileController extends Controller
 
         return back()->with('success', 'File uploaded successfully.');
     }
+    public function download(SubjectFile $file)
+    {
+        if (!Storage::disk('public')->exists($file->file_path)) {
+            return back()->with('error', 'File not found.');
+        }
+
+        return Storage::disk('public')->download($file->file_path, $file->title);
+    }
 
     public function destroy(SubjectFile $file)
     {
-        Storage::disk('public')->delete($file->file_path);
-        $file->delete();
-        return back()->with('success', 'File deleted successfully.');
+        try {
+            // Delete file from storage
+            if (Storage::disk('public')->exists($file->file_path)) {
+                Storage::disk('public')->delete($file->file_path);
+            }
+
+            // Delete record from database
+            $file->delete();
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 500);
+        }
     }
 }

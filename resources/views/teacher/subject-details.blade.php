@@ -31,53 +31,54 @@
         </div>
     </div>
 
-    <!-- Students List -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-users me-1"></i>
-            Students Enrolled
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Student</th>
-                            <th>Latest Mark</th>
-                            <th>Average</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($students as $student)
-                            <tr>
-                                <td>{{ $student->full_name }}</td>
-                                <td>
-                                    @if($student->latestMark)
-                                        <span class="badge bg-{{ $student->latestMark->score >= 70 ? 'success' : ($student->latestMark->score >= 50 ? 'warning' : 'danger') }}">
-                                            {{ $student->latestMark->score }}%
-                                        </span>
-                                    @else
-                                        <span class="badge bg-secondary">No marks yet</span>
-                                    @endif
-                                </td>
-                                <td>{{ number_format($student->marks_average, 1) }}%</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary add-mark-btn" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#addMarkModal"
-                                            data-student-id="{{ $student->id }}"
-                                            data-student-name="{{ $student->full_name }}">
-                                        <i class="fas fa-plus"></i> Add Mark
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+
+        <div class="col-12 mt-4">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Subject Files</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>File Title</th>
+                                    <th>Uploaded By</th>
+                                    <th>Upload Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($subject->files as $file)
+                                    <tr>
+                                        <td>{{ $file->subject->name }}</td>
+                                        <td>{{ $file->title }}</td>
+                                        <td>{{ $file->uploader->first_name }}</td>
+                                        <td>{{ $file->created_at->format('M d, Y') }}</td>
+                                        <td>
+                                            <a href="{{ route('student.download.file', $file->id) }}" 
+                                               class="btn btn-sm btn-primary">
+                                                <i class="fas fa-download me-1"></i>Download
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center py-3">
+                                            No files available
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Students List -->
+  
 </div>
 
 <!-- Add Mark Modal -->

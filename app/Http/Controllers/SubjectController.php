@@ -30,8 +30,10 @@ class SubjectController extends Controller
     }
     
 
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
+
+        $subject = Subject::find($id);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -42,8 +44,10 @@ class SubjectController extends Controller
         return back()->with('success', 'Subject updated successfully.');
     }
 
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
+        $subject = Subject::find($id);
+
         $subject->delete();
         return back()->with('success', 'Subject deleted successfully.');
     }

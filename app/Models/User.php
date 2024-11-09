@@ -131,4 +131,9 @@ class User extends Authenticatable
     {
         return $query->where('role', 'manager');
     }
+
+    public function getTeacherAttribute()
+    {
+        return $this->teachers->first();
+    }
 }

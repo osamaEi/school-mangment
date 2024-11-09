@@ -113,7 +113,7 @@ class StudentController extends Controller
             'email' => ['required', 'string', 'email', 'unique:users,email,' . $student->id],
             'phone' => ['required', 'string', 'unique:users,phone,' . $student->id],
             'password' => ['nullable', 'min:8', 'confirmed'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image'],
             'level_id' => ['required', 'exists:levels,id']
         ]);
 

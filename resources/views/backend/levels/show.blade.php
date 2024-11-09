@@ -154,33 +154,46 @@
                                         <p class="card-text">{{ $subject->description ?? 'No description available' }}</p>
                                         
                                         <!-- Subject Files -->
-                                        <div class="mt-3">
-                                            <h6 class="mb-2">
-                                                <i class="fas fa-file me-1"></i>Files 
-                                                <span class="badge bg-secondary">{{ $subject->files->count() }}</span>
-                                            </h6>
-                                            <div class="list-group list-group-flush">
-                                                @foreach($subject->files as $file)
-                                                    <div class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <i class="fas fa-file me-2"></i>
-                                                            {{ $file->title }}
-                                                        </div>
-                                                        <div class="btn-group btn-group-sm">
-                                                            <a href="" 
-                                                               class="btn btn-outline-primary">
-                                                                <i class="fas fa-download"></i>
-                                                            </a>
-                                                            <button type="button" 
-                                                                    class="btn btn-outline-danger"
-                                                                    onclick="deleteFile({{ $file->id }})">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                   <!-- Subject Files -->
+<div class="mt-3">
+    <h6 class="mb-2">
+        <i class="fas fa-file me-1"></i>Files 
+        <span class="badge bg-secondary">{{ $subject->files->count() }}</span>
+    </h6>
+    <div class="list-group list-group-flush">
+        @foreach($subject->files as $file)
+            <div class="list-group-item p-2 d-flex justify-content-between align-items-center" id="file-{{ $file->id }}">
+                <div>
+                    @php
+                        $extension = pathinfo($file->file_path, PATHINFO_EXTENSION);
+                        $iconClass = match(strtolower($extension)) {
+                            'pdf' => 'fa-file-pdf text-danger',
+                            'doc', 'docx' => 'fa-file-word text-primary',
+                            'xls', 'xlsx' => 'fa-file-excel text-success',
+                            'ppt', 'pptx' => 'fa-file-powerpoint text-warning',
+                            default => 'fa-file text-secondary'
+                        };
+                    @endphp
+                    <i class="fas {{ $iconClass }} me-2"></i>
+                    {{ $file->title }}
+                </div>
+                <div class="btn-group btn-group-sm">
+                    <a href="{{ route('admin.subject.file.download', $file->id) }}" 
+                       class="btn btn-outline-primary"
+                       title="Download">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <button type="button" 
+                            class="btn btn-outline-danger"
+                            onclick="deleteFile({{ $file->id }})"
+                            title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +222,6 @@
 @endforeach
 @include('backend.levels.modals.create_subject', ['level' => $level])
 
-@push('styles')
 <style>
 .list-group-item img {
     border: 2px solid #fff;
@@ -232,35 +244,66 @@
     width: 20px;
 }
 </style>
-@endpush
 
-@push('scripts')
 <script>
-$(document).ready(function() {
-    // Initialize all tooltips
-    $('[data-bs-toggle="tooltip"]').tooltip();
-
-    // File upload preview
-    $('input[type="file"]').change(function() {
-        const fileName = $(this).val().split('\\').pop();
-        $(this).next('.custom-file-label').html(fileName);
-    });
-});
-
 function deleteFile(fileId) {
     if (confirm('Are you sure you want to delete this file?')) {
         $.ajax({
             url: `/admin/subject-files/${fileId}`,
             type: 'DELETE',
-            data: {
-                _token: '{{ csrf_token() }}'
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
             success: function() {
-                location.reload();
+                // Remove the file element from DOM
+                $(`#file-${fileId}`).fadeOut(300, function() {
+                    $(this).remove();
+                    // Update the file count badge
+                    let badge = $(this).closest('.card').find('.badge');
+                    let count = parseInt(badge.text()) - 1;
+                    badge.text(count);
+                });
+                
+                // Show success message
+                toastr.success('File deleted successfully');
+            },
+            error: function() {
+                toastr.error('Failed to delete file');
             }
         });
     }
 }
+
+// Initialize tooltips
+$(document).ready(function() {
+    $('[data-bs-toggle="tooltip"]').tooltip();
+    
+    // File upload preview
+    $('input[type="file"]').change(function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.form-text').html(`Selected file: ${fileName}`);
+    });
+});
 </script>
-@endpush
+
+<style>
+/* Add animation for file deletion */
+.list-group-item {
+    transition: all 0.3s ease;
+}
+
+.btn-group .btn {
+    transition: all 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* File type icons */
+.fa-file-pdf { color: #dc3545; }
+.fa-file-word { color: #0d6efd; }
+.fa-file-excel { color: #198754; }
+.fa-file-powerpoint { color: #fd7e14; }
+</style>
 @endsection

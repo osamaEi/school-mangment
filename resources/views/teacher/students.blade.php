@@ -41,12 +41,11 @@
                             </td>
                             <td>{!! $student->status_badge !!}</td>
                             <td>
-                                <button class="btn btn-sm btn-primary add-mark-btn"
-                                        data-bs-toggle="modal"
+                                <button class="btn btn-sm btn-primary add-mark-btn" 
+                                        data-bs-toggle="modal" 
                                         data-bs-target="#addMarkModal"
                                         data-student-id="{{ $student->id }}"
-                                        data-student-name="{{ $student->full_name }}"
-                                        data-subject-id="{{ $subject->id }}">
+                                        data-student-name="{{ $student->full_name }}">
                                     <i class="fas fa-plus"></i> Add Mark
                                 </button>
                             </td>
@@ -62,4 +61,20 @@
 
 <!-- Add Mark Modal -->
 @include('teacher.partials.add-mark-modal')
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+    // Handle Add Mark Modal
+    $('.add-mark-btn').click(function() {
+        const studentId = $(this).data('student-id');
+        const studentName = $(this).data('student-name');
+        
+        $('#studentId').val(studentId);
+        $('#studentName').text(studentName);
+        $('#addMarkForm').attr('action', `/teacher/marks/${studentId}/store`);
+    });
+});
+</script>
+@endpush
 @endsection

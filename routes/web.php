@@ -52,6 +52,7 @@ Route::middleware(['auth','roles:admin'])->group(function () {
     Route::patch('teachers/{teacher}/toggle-status', [TeacherController::class, 'toggleStatus'])->name('teachers.toggle-status');
     Route::post('teachers/{teacher}/assign-subject', [TeacherController::class, 'assignSubject'])->name('teachers.assign-subject');
     Route::delete('teachers/{teacher}/remove-subject', [TeacherController::class, 'removeSubject'])->name('teachers.remove-subject');
+      
 
     Route::prefix('students')->group(function () {
         
@@ -86,6 +87,12 @@ Route::middleware(['auth','roles:admin'])->group(function () {
             ->name('Adminstudent.change-level');
     });
 
+    Route::get('subject-files/{file}/download', [SubjectFileController::class, 'download'])
+    ->name('admin.subject.file.download');
+    
+Route::delete('admin/subject-files/{file}', [SubjectFileController::class, 'destroy'])
+    ->name('admin.subject.file.destroy');
+
     Route::get('/admin/dashboard',[DashboardController::class,'adminDashboard'])->name('admin.dashboard');
 
 });
@@ -98,6 +105,10 @@ Route::get('/ChangePassword',[ProfileController::class,'ChangePassword'])->name(
 
 Route::post('/profile',[ProfileController::class,'ProfileStore'])->name('profile.store');
 Route::post('/PasswordUpdate',[ProfileController::class,'PasswordUpdate'])->name('profile.PasswordUpdate');
+
+
+Route::get('student/file/{file}/download', [StudentDashboardController::class, 'downloadFile'])
+->name('student.download.file');
 
 });
 Route::middleware(['auth','roles:teacher'])->group(function () {
@@ -114,6 +125,8 @@ Route::middleware(['auth','roles:student'])->group(function () {
 
     Route::get('/student/dashboard',[StudentDashboardController::class,'index'])->name('student.dashboard');
 
+
+    // routes/web.php
 
 
     

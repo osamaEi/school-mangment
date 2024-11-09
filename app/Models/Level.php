@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Mark;
 use App\Models\User;
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
@@ -34,4 +35,6 @@ class Level extends Model
     {
         return $this->students()->wherePivot('status', 'completed');
     }
+
+   
 }

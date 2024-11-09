@@ -13,7 +13,7 @@
                 <li class="nav-item">
                     <a href="{{route('admin.dashboard')}}" class="nav-link">
                         <i class="fas fa-plus-circle nav-icon"></i>
-                        <p> {{__('Teachers')}}</p>
+                        <p> {{__('Dashboard')}}</p>
                     </a>
                 </li>
             </ul>

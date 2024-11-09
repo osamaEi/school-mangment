@@ -42,5 +42,14 @@ class Subject extends Model
     {
         return $this->level->students();
     }
-
+    public function scopeWithLastMarkForStudent($query, $studentId)
+    {
+        return $query->addSelect([
+            'latest_mark' => Mark::select('score')
+                ->whereColumn('subject_id', 'subjects.id')
+                ->where('student_id', $studentId)
+                ->latest()
+                ->limit(1)
+        ]);
+    }
 }

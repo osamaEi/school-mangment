@@ -46,8 +46,12 @@ public function show($id)
         return view('backend.levels.edit', compact('level'));
     }
 
-    public function update(Request $request, Level $level)
+    public function update(Request $request, $id)
     {
+
+        $level =Level::find($id);
+
+
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:levels,name,' . $level->id,
             'description' => 'nullable|string'
@@ -59,8 +63,10 @@ public function show($id)
             ->with('success', 'Level updated successfully.');
     }
 
-    public function destroy(Level $level)
+    public function destroy($id)
     {
+        $level =Level::find($id);
+
         $level->delete();
         return redirect()->route('Adminlevel.index')
             ->with('success', 'Level deleted successfully.');
