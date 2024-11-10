@@ -66,19 +66,7 @@
                             @endif
                         </td>
                         <td>
-                            @php
-                                $averageScore = $student->studentMarks->avg('score');
-                            @endphp
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar {{ $averageScore >= 12 ? 'bg-success' : ($averageScore = 12 ? 'bg-warning' : 'bg-danger') }}" 
-                                     role="progressbar" 
-                                     style="width: {{ $averageScore }}%">
-                                    {{ number_format($averageScore, 1) }}%
-                                </div>
-                            </div>
-                            <div class="text-muted small mt-1">
-                                {{ $student->studentMarks->count() }} marks recorded
-                            </div>
+
                         </td>
                         <td>
                             <div class="form-check form-switch">
@@ -139,7 +127,7 @@
     <p>Are you sure you want to delete {{ $student->full_name }}'s account?</p>
     <div class="text-muted small mb-3">
         <div>Current Level: {{ $student->currentLevel()?->name ?? 'None' }}</div>
-        <div>Marks Recorded: {{ $student->studentMarks->count() }}</div>
+        <div>Marks Recorded: {{ $student->marks->count() }}</div>
     </div>
     <p class="text-danger"><small>This action cannot be undone. All associated data will be permanently deleted.</small></p>
 </div>

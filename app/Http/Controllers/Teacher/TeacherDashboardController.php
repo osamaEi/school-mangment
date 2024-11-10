@@ -56,7 +56,7 @@ class TeacherDashboardController extends Controller
         ->get();
 
     return view('teacher.subject-details', compact('subject', 'students', 'marks'));
-}
+} 
 
 public function storeMark(Request $request, $studentId)
 {

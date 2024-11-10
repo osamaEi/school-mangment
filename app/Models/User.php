@@ -95,7 +95,7 @@ class User extends Authenticatable
     
     public function studentMarks()
     {
-        return $this->hasMany(Mark::class, 'student_id');
+        return $this->hasOne(Mark::class, 'student_id');
     }
     
     public function currentLevel()

@@ -127,11 +127,7 @@
 
                                         @endif
                                     </div>
-                                    @if($subject->latest_mark)
-                                        <span class="badge bg-{{ $subject->latest_mark->score >= 70 ? 'success' : ($subject->latest_mark->score >= 50 ? 'warning' : 'danger') }}">
-                                            {{ $subject->latest_mark->score }}%
-                                        </span>
-                                    @endif
+                                
                                 </div>
                             </div>
                         @empty

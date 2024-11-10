@@ -96,17 +96,13 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
-                    <a href="" class="btn btn-primary w-100 mb-2">
+                <div class="col-md-6">
+                    <a href="{{route('teacher.showStudents')}}" class="btn btn-primary w-100 mb-2">
                         <i class="fas fa-plus-circle me-2"></i>Add Mark
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-success w-100 mb-2">
-                        <i class="fas fa-file-upload me-2"></i>Upload File
-                    </a>
-                </div>
-                <div class="col-md-4">
+                
+                <div class="col-md-6">
                     <a href="{{route('teacher.showStudents')}}" class="btn btn-info w-100 mb-2 text-white">
                         <i class="fas fa-users me-2"></i>View Students
                     </a>

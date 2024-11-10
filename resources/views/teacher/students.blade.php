@@ -29,11 +29,20 @@
                         @foreach($subject->level->students as $student)
                         <tr>
                             <td>{{ $student->full_name }}</td>
-                            <td>{{ $student->marks_count }}</td>
+
+
+                            <td>
+                                @if($student->studentMarks)
+
+                                {{ $student->studentMarks->score }}
+                            @else 
+                            {{__('Not yet')}}
+                            @endif
+                            </td>
                             <td>
                                 @if($student->average_score)
-                                    <span class="badge bg-{{ $student->average_score >= 70 ? 'success' : ($student->average_score >= 50 ? 'warning' : 'danger') }}">
-                                        {{ number_format($student->average_score, 1) }}%
+                                    <span class="badge bg-{{ $student->average_score >= 12 ? 'success' : 'danger' }}">
+                                        {{ number_format($student->average_score, 1) }}
                                     </span>
                                 @else
                                     <span class="badge bg-secondary">No marks</span>
@@ -41,6 +50,7 @@
                             </td>
                             <td>{!! $student->status_badge !!}</td>
                             <td>
+                                @if(!$student->studentMarks)
                                 <button class="btn btn-sm btn-primary add-mark-btn" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#addMarkModal"
@@ -48,6 +58,7 @@
                                         data-student-name="{{ $student->full_name }}">
                                     <i class="fas fa-plus"></i> Add Mark
                                 </button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

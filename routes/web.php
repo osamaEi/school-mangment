@@ -119,7 +119,7 @@ Route::middleware(['auth','roles:teacher'])->group(function () {
     Route::get('teacher/subjects/{id}', [TeacherDashboardController::class, 'showSubject'])->name('teacher.subject.show');
     Route::post('teacher/marks/{student}/store', [TeacherDashboardController::class, 'storeMark'])->name('teacher.marks.store');
     
-});
+}); 
 
 Route::middleware(['auth','roles:student'])->group(function () {
 

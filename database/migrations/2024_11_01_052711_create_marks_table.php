@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('score', 5, 2);
             $table->text('remarks')->nullable();
             $table->timestamps();
+
+            $table->unique(['teacher_id', 'subject_id','student_id']);
         });
     }
 
