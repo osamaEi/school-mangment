@@ -99,50 +99,52 @@ class StudentController extends Controller
         return view('backend.students.edit', compact('student', 'levels'));
     }
 
-    public function update(Request $request, User $student)
+    
+    public function update(Request $request, $id)
     {
-        abort_if($student->role !== 'student', 404);
-
-        $validated = $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['nullable', 'string', 'max:255'],
-            'family_name' => ['nullable', 'string', 'max:255'],
-            'family_name2' => ['nullable', 'string', 'max:255'],
-            'country' => ['nullable', 'string', 'max:255'],
-            'dob' => ['required', 'date', 'before:today'],
-            'email' => ['required', 'string', 'email', 'unique:users,email,' . $student->id],
-            'phone' => ['required', 'string', 'unique:users,phone,' . $student->id],
-            'password' => ['nullable', 'min:8', 'confirmed'],
-            'photo' => ['nullable', 'image'],
-            'level_id' => ['required', 'exists:levels,id']
+        $student = User::findOrFail($id);
+    
+        // Validate the request
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'family_name' => 'nullable|string|max:255',
+            'family_name2' => 'nullable|string|max:255',
+            'dob' => 'required|date',
+            'country' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'password' => 'nullable|string|min:8|confirmed',
+            'photo' => 'nullable|image|max:2048',
         ]);
-
+    
+        // Update fields if they are changed
+        $student->first_name = $request->first_name !== $student->first_name ? $request->first_name : $student->first_name;
+        $student->last_name = $request->last_name !== $student->last_name ? $request->last_name : $student->last_name;
+        $student->family_name = $request->family_name !== $student->family_name ? $request->family_name : $student->family_name;
+        $student->family_name2 = $request->family_name2 !== $student->family_name2 ? $request->family_name2 : $student->family_name2;
+        $student->dob = $request->dob !== $student->dob->format('Y-m-d') ? $request->dob : $student->dob;
+        $student->country = $request->country !== $student->country ? $request->country : $student->country;
+        $student->email = $request->email !== $student->email ? $request->email : $student->email;
+        $student->phone = $request->phone !== $student->phone ? $request->phone : $student->phone;
+    
+        if ($request->filled('password')) {
+            $student->password = bcrypt($request->password);
+        }
+    
         if ($request->hasFile('photo')) {
             if ($student->photo) {
-                Storage::disk('public')->delete($student->photo);
+                Storage::delete($student->photo);
             }
-            $validated['photo'] = $request->file('photo')->store('student-photos', 'public');
+            $student->photo = $request->file('photo')->store('students_photos');
+        } elseif ($request->has('remove_photo') && $student->photo) {
+            Storage::delete($student->photo);
+            $student->photo = null;
         }
-
-        $student->update([
-            ...$validated,
-            'age' => Carbon::parse($request->dob)->age,
-            'password' => $request->password ? Hash::make($request->password) : $student->password
-        ]);
-
-        if ($request->level_id != $student->currentLevel()?->id) {
-            $student->studentLevels()
-                   ->wherePivot('status', 'active')
-                   ->update(['status' => 'completed', 'completed_at' => now()]);
-
-            $student->studentLevels()->attach($request->level_id, [
-                'status' => 'active',
-                'enrolled_at' => now()
-            ]);
-        }
-
-        return redirect()->route('Adminstudent.index')
-            ->with('success', 'Student updated successfully.');
+    
+        $student->save();
+    
+        return redirect()->route('Adminstudent.index')->with('success', 'Student updated successfully.');
     }
 
     public function destroy(User $student)

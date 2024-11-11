@@ -123,7 +123,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center mb-3">
-                    <img src="{{ $teacher->getPhotoUrlteacher() }}" 
+                    <img src="{{url('upload/admin_images/'.auth()->user()->photo)}}" 
                          alt="{{ $teacher->getFullNameAttribute() }}"
                          class="rounded-circle" 
                          width="100" height="100"

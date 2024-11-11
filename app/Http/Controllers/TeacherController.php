@@ -105,77 +105,62 @@ class TeacherController extends Controller
         return view('backend.teachers.edit', compact('teacher', 'levels'));
     }
 
-    public function update(Request $request, User $teacher)
-{
-    // Define base validation rules
-    $rules = [
-        'first_name' => ['sometimes', 'required', 'string', 'max:255'],
-        'last_name' => ['sometimes', 'nullable', 'string', 'max:255'],
-        'family_name' => ['sometimes', 'nullable', 'string', 'max:255'],
-        'family_name2' => ['sometimes', 'nullable', 'string', 'max:255'],
-        'country' => ['sometimes', 'nullable', 'string', 'max:255'],
-        'dob' => ['sometimes', 'required', 'date', 'before:today'],
-        'password' => ['sometimes', 'nullable', 'min:8', 'confirmed'],
-        'photo' => ['sometimes', 'nullable', 'image', 'max:2048'],
-    ];
-
-    // Only validate email if it's provided and different from current
-    if ($request->has('email')) {
-        // If email is unchanged, remove it from the request
-        if ($request->email === $teacher->email) {
-            $request->request->remove('email');
-        } else {
-            $rules['email'] = ['required', 'string', 'email', 'unique:users,email,' . $teacher->id];
+    public function update(Request $request, $id)
+    {
+        $teacher = User::findOrFail($id);
+    
+        // Validate the request
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'family_name' => 'nullable|string|max:255',
+            'family_name2' => 'nullable|string|max:255',
+            'dob' => 'required|date',
+            'country' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'password' => 'nullable|string|min:8|confirmed',
+            'photo' => 'nullable|image|max:2048',
+        ]);
+    
+        // Update fields if they are changed
+        $teacher->first_name = $request->first_name !== $teacher->first_name ? $request->first_name : $teacher->first_name;
+        $teacher->last_name = $request->last_name !== $teacher->last_name ? $request->last_name : $teacher->last_name;
+        $teacher->family_name = $request->family_name !== $teacher->family_name ? $request->family_name : $teacher->family_name;
+        $teacher->family_name2 = $request->family_name2 !== $teacher->family_name2 ? $request->family_name2 : $teacher->family_name2;
+        $teacher->dob = $request->dob !== $teacher->dob->format('Y-m-d') ? $request->dob : $teacher->dob;
+        $teacher->country = $request->country !== $teacher->country ? $request->country : $teacher->country;
+        $teacher->email = $request->email !== $teacher->email ? $request->email : $teacher->email;
+        $teacher->phone = $request->phone !== $teacher->phone ? $request->phone : $teacher->phone;
+    
+        if ($request->filled('password')) {
+            $teacher->password = bcrypt($request->password);
         }
-    }
-
-    // Only validate phone if it's provided and different from current
-    if ($request->has('phone')) {
-        // If phone is unchanged, remove it from the request
-        if ($request->phone === $teacher->phone) {
-            $request->request->remove('phone');
-        } else {
-            $rules['phone'] = ['required', 'string', 'unique:users,phone,' . $teacher->id];
+    
+        if ($request->hasFile('photo')) {
+            if ($teacher->photo) {
+                Storage::delete($teacher->photo);
+            }
+            $teacher->photo = $request->file('photo')->store('teacher_photos');
+        } elseif ($request->has('remove_photo') && $teacher->photo) {
+            Storage::delete($teacher->photo);
+            $teacher->photo = null;
         }
+    
+        $teacher->save();
+    
+        return redirect()->route('Adminteacher.index')->with('success', 'Teacher updated successfully.');
     }
-
-    // Validate request data
-    $validated = $request->validate($rules);
-
-    // Handle photo upload if provided
-    if ($request->hasFile('photo')) {
-        // Delete old photo if exists
-        if ($teacher->photo) {
-            Storage::disk('public')->delete($teacher->photo);
-        }
-        $validated['photo'] = $request->file('photo')->store('teacher-photos', 'public');
-    }
-
-    // Remove password from validated data if not provided
-    if (empty($validated['password'])) {
-        unset($validated['password']);
-    } else {
-        $validated['password'] = Hash::make($validated['password']);
-    }
-
-    // Calculate age only if dob is provided
-    if (isset($validated['dob'])) {
-        $validated['age'] = Carbon::parse($validated['dob'])->age;
-    }
-
-    // Update teacher data
-    $teacher->update($validated);
-
-    return redirect()->route('Adminteacher.index')
-        ->with('success', 'Teacher updated successfully.');
-}
     
 
+  
 
-public function destroy(User $teacher)
+
+public function destroy($id)
 {
     try {
-        // Delete photo if it exists
+           $teacher = User::find($id);
+
         if ($teacher->photo) {
             \Log::info('Deleting photo at: ' . $teacher->photo);  // Debugging line
             Storage::disk('public')->delete($teacher->photo);
@@ -245,6 +230,7 @@ public function destroy(User $teacher)
         ]);
 
         $teacher->teachingSubjects()->detach($request->subject_id);
+
         return redirect()->back()->with('success', 'Subject removed successfully.');
     }
 }

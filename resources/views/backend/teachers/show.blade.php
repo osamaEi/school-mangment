@@ -196,11 +196,16 @@
                                                 <span class="badge bg-success">Active</span>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger btn-sm" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target="#removeSubjectModal{{ $subject->id }}">
+
+                                                <form action="{{route('teachers.remove-subject',$teacher->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="subject_id" value="{{$subject->id}}">
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                       
                                                     <i class="fas fa-trash"></i>
                                                 </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

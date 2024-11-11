@@ -25,7 +25,7 @@ style="background-color:#1c2e51;"
 
           <img src="
           @if(auth()->user()->role == 'admin')
-          {{auth()->user()->getPhotoUrlteacher()}}
+          {{ url('upload/admin_images/'.auth()->user()->photo) }}
           @elseif(auth()->user()->role == 'teacher')
 {{auth()->user()->getPhotoUrlteacher()}}
 @else

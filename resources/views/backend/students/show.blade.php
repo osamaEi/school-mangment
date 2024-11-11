@@ -199,7 +199,7 @@
 
     <div class="row">
         <!-- Student Profile Card -->
-        <div class="col-12 col-md-4 col-lg-4"> 
+        <div class=" col-md-4 col-lg-4"> 
             
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -251,7 +251,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-center mb-3">
-                                    <div class="fw-bold h4 mb-0">{{ $student->studentMarks->count() }}</div>
+                                    <div class="fw-bold h4 mb-0">{{ $student->marks->count() }}</div>
                                     <div class="small text-muted">Marks</div>
                                 </div>
                             </div>
@@ -303,12 +303,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
 
         <!-- Academic Information -->
-        <div class="col-12 col-md-8 col-lg-8">
+        <div class="col-md-8 col-lg-8">
             
-            <!-- Current Level Card -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
