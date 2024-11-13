@@ -1,20 +1,20 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Teachers Management</h1>
+    <h1 class="mt-4">{{__('Teachers Management')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item active">Teachers</li>
+        <li class="breadcrumb-item"><a href="">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item active">{{__('Teachers')}}</li>
     </ol>
     
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div>
                 <i class="fas fa-chalkboard-teacher me-1"></i>
-                Teachers List
+                {{__('Teachers List')}}
             </div>
             <a href="{{ route('Adminteacher.create') }}" class="btn btn-primary" style="  margin-left: 605px;">
-                <i class="fas fa-plus me-2"></i>Add New Teacher
+                <i class="fas fa-plus me-2"></i>{{__('Add New Teacher')}}
             </a>
         </div>
         <div class="card-body">
@@ -28,11 +28,11 @@
             <table id="teachersTable" class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th width="40%">Teacher Information</th>
-                        <th>Contact</th>
-                        <th>Status</th>
-                        <th>Subjects</th>
-                        <th>Actions</th>
+                        <th width="40%">{{__('Teacher Information')}}</th>
+                        <th>{{__('Contact')}}</th>
+                        <th>{{__('Status')}}</th>
+                        <th>{{__('Subjects')}}</th>
+                        <th>{{__('Actions')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +50,7 @@
                                     <div class="text-muted">{{ $teacher->family_name }} {{ $teacher->family_name2 }}</div>
                                     <small class="text-muted">
                                         <i class="fas fa-calendar-alt me-1"></i>
-                                        Joined {{ $teacher->created_at->diffForHumans() }}
+                                        {{__('Joined')}} {{ $teacher->created_at->diffForHumans() }}
                                     </small>
                                 </div>
                             </div>
@@ -64,9 +64,9 @@
                             {!! $teacher->status_badge !!}
                             <div class="small text-muted mt-1">
                                 @if($teacher->status)
-                                    <i class="fas fa-check-circle text-success"></i> Teaching
+                                    <i class="fas fa-check-circle text-success"></i> {{__('Teaching')}}
                                 @else
-                                    <i class="fas fa-pause-circle text-danger"></i> On Leave
+                                    <i class="fas fa-pause-circle text-danger"></i> {{__('On Leave')}}
                                 @endif
                             </div>
                         </td>
@@ -74,7 +74,7 @@
                             @forelse($teacher->teachingSubjects as $subject)
                                 <span class="badge bg-info me-1">{{ $subject->name }}</span>
                             @empty
-                                <span class="text-muted">No subjects assigned</span>
+                                <span class="text-muted">{{__('No subjects assigned')}}</span>
                             @endforelse
                         </td>
                         <td>
@@ -118,7 +118,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Confirm Delete</h5>
+                <h5 class="modal-title">{{__('Confirm Delete')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -129,16 +129,16 @@
                          width="100" height="100"
                          style="object-fit: cover;">
                 </div>
-                <p>Are you sure you want to delete teacher <strong>{{ $teacher->getFullNameAttribute() }}</strong>?</p>
-                <p class="text-danger"><small>This action cannot be undone.</small></p>
+                <p>{{__('Are you sure you want to delete teacher')}} <strong>{{ $teacher->getFullNameAttribute() }}</strong>?</p>
+                <p class="text-danger"><small>{{__('This action cannot be undone.')}}</small></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                 <form action="{{ route('Adminteacher.destroy', $teacher->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-trash me-1"></i>Delete
+                        <i class="fas fa-trash me-1"></i>{{__('Delete')}}
                     </button>
                 </form>
             </div>

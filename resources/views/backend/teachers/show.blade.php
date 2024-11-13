@@ -1,11 +1,11 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Teacher Details</h1>
+    <h1 class="mt-4">{{__('Teacher Details')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('Adminteacher.index') }}">Teachers</a></li>
-        <li class="breadcrumb-item active">Teacher Details</li>
+        <li class="breadcrumb-item"><a href="">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('Adminteacher.index') }}">{{__('Teachers')}}</a></li>
+        <li class="breadcrumb-item active">{{__('Teacher Details')}}</li>
     </ol>
 
     @if(session('success'))
@@ -22,12 +22,12 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <i class="fas fa-user-circle me-1"></i>
-                        Profile Information
+                        {{__('Profile Information')}}
                     </div>
                     @if($teacher->status)
-                        <span class="badge bg-success">Active</span>
+                        <span class="badge bg-success">{{__('Active')}}</span>
                     @else
-                        <span class="badge bg-danger">Inactive</span>
+                        <span class="badge bg-danger">{{__('Inactive')}}</span>
                     @endif
                 </div>
                 <div class="card-body text-center">
@@ -40,15 +40,15 @@
                     </div>
                     <h4>{{ $teacher->full_name }}</h4>
                     <p class="text-muted">
-                        <i class="fas fa-chalkboard-teacher me-2"></i>Teacher
+                        <i class="fas fa-chalkboard-teacher me-2"></i>{{__('Teacher')}}
                     </p>
                     
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <a href="mailto:{{ $teacher->email }}" class="btn btn-primary btn-sm">
-                            <i class="fas fa-envelope me-1"></i>Email
+                            <i class="fas fa-envelope me-1"></i>{{__('Email')}}
                         </a>
                         <a href="tel:{{ $teacher->phone }}" class="btn btn-info btn-sm text-white">
-                            <i class="fas fa-phone me-1"></i>Call
+                            <i class="fas fa-phone me-1"></i>{{__('Call')}}
                         </a>
                     </div>
 
@@ -56,15 +56,15 @@
                         <div class="row text-center">
                             <div class="col">
                                 <h5>{{ $teacher->teachingSubjects->count() }}</h5>
-                                <small class="text-muted">Subjects</small>
+                                <small class="text-muted">{{__('Subjects')}}</small>
                             </div>
                             <div class="col">
                                 <h5>{{ $teacher->marks->count() }}</h5>
-                                <small class="text-muted">Marks Given</small>
+                                <small class="text-muted">{{__('Marks Given')}}</small>
                             </div>
                             <div class="col">
                                 <h5>{{ $teacher->created_at->diffInMonths() }}</h5>
-                                <small class="text-muted">Months Active</small>
+                                <small class="text-muted">{{__('Months Active')}}</small>
                             </div>
                         </div>
                     </div>
@@ -75,21 +75,21 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-tasks me-1"></i>
-                    Quick Actions
+                    {{__('Quick Actions')}}
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
                         <a href="{{ route('Adminteacher.edit', $teacher) }}" class="btn btn-warning">
-                            <i class="fas fa-edit me-2"></i>Edit Profile
+                            <i class="fas fa-edit me-2"></i>{{__('Edit Profile')}}
                         </a>
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                            <i class="fas fa-trash me-2"></i>Delete Teacher
+                            <i class="fas fa-trash me-2"></i>{{__('Delete Teacher')}}
                         </button>
                         <button class="btn btn-{{ $teacher->status ? 'danger' : 'success' }}" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#statusModal">
                             <i class="fas fa-{{ $teacher->status ? 'ban' : 'check' }} me-2"></i>
-                            {{ $teacher->status ? 'Deactivate' : 'Activate' }} Teacher
+                            {{ $teacher->status ? 'Deactivate' : 'Activate' }} {{__('Teacher')}}
                         </button>
                     </div>
                 </div>
@@ -101,12 +101,12 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-info-circle me-1"></i>
-                    Personal Information
+                    {{__('Personal Information')}}
                 </div>
                 <div class="card-body">
                     <div class="row align-items-center mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Full Name</h6>
+                            <h6 class="mb-0">{{__('Full Name')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             {{ $teacher->first_name }} {{ $teacher->last_name }} 
@@ -116,7 +116,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Email</h6>
+                            <h6 class="mb-0">{{__('Email')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a>
@@ -125,7 +125,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Phone</h6>
+                            <h6 class="mb-0">{{__('Phone')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             <a href="tel:{{ $teacher->phone }}">{{ $teacher->phone }}</a>
@@ -134,7 +134,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Country</h6>
+                            <h6 class="mb-0">{{__('Country')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             {{ $teacher->country }}
@@ -143,7 +143,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Date of Birth</h6>
+                            <h6 class="mb-0">{{__('Date of Birth')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             {{ $teacher->dob->format('F j, Y') }} ({{ $teacher->age }} years old)
@@ -152,7 +152,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Joined Date</h6>
+                            <h6 class="mb-0">{{__('Joined Date')}}</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
                             {{ $teacher->created_at->format('F j, Y') }}
@@ -167,10 +167,10 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <i class="fas fa-book me-1"></i>
-                        Teaching Subjects
+                        {{__('Teaching Subjects')}}
                     </div>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#assignSubjectModal">
-                        <i class="fas fa-plus me-1"></i>Assign Subject
+                        <i class="fas fa-plus me-1"></i>{{__('Assign Subject')}}
                     </button>
                 </div>
                 <div class="card-body">
@@ -179,11 +179,11 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Subject Name</th>
-                                        <th>Level</th>
-                                        <th>Students</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th>{{__('Subject Name')}}</th>
+                                        <th>{{__('Level')}}</th>
+                                        <th>{{__('Students')}}</th>
+                                        <th>{{__('Status')}}</th>
+                                        <th>{{__('Actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -191,9 +191,9 @@
                                         <tr>
                                             <td>{{ $subject->name }}</td>
                                             <td>{{ $subject->level->name }}</td>
-                                            <td>{{ $subject->students->count() }} students</td>
+                                            <td>{{ $subject->students->count() }} {{__('students')}}</td>
                                             <td>
-                                                <span class="badge bg-success">Active</span>
+                                                <span class="badge bg-success">{{__('Active')}}</span>
                                             </td>
                                             <td>
 
@@ -217,8 +217,8 @@
                             <div class="text-muted mb-3">
                                 <i class="fas fa-book-open fa-3x"></i>
                             </div>
-                            <h6>No Subjects Assigned Yet</h6>
-                            <p class="text-muted">Click the "Assign Subject" button to add subjects.</p>
+                            <h6>{{__('No Subjects Assigned Yet')}}</h6>
+                            <p class="text-muted">{{__('Click the "Assign Subject" button to add subjects.')}}</p>
                         </div>
                     @endif
                 </div>
@@ -228,7 +228,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-history me-1"></i>
-                    Recent Activity
+                    {{__('Recent Activity')}}
                 </div>
                 <div class="card-body">
                     <div class="timeline">
@@ -236,7 +236,7 @@
                             <div class="timeline-item">
                                 <div class="timeline-content">
                                     <div class="text-muted small">{{ $mark->created_at->diffForHumans() }}</div>
-                                    <div>Added mark for <strong>{{ $mark->student->full_name }}</strong></div>
+                                    <div>{{__('Added mark for')}} <strong>{{ $mark->student->full_name }}</strong></div>
                                     <div class="text-muted">Subject: {{ $mark->subject->name }}</div>
                                 </div>
                             </div>
@@ -253,7 +253,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Confirm Delete</h5>
+                <h5 class="modal-title">{{__('Confirm Delete')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
@@ -262,17 +262,17 @@
                      class="rounded-circle mb-3" 
                      width="100" height="100"
                      style="object-fit: cover;">
-                <h5>Delete Teacher Account</h5>
-                <p>Are you sure you want to delete {{ $teacher->full_name }}'s account?</p>
-                <p class="text-danger"><small>This action cannot be undone.</small></p>
+                <h5>{{__('Delete Teacher Account')}}</h5>
+                <p>{{__('Are you sure you want to delete')}} {{ $teacher->full_name }}{{__('s account?')}}</p>
+                <p class="text-danger"><small>{{__('This action cannot be undone.')}}</small></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel')}}</button>
                 <form action="{{ route('Adminteacher.destroy', $teacher) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-trash me-1"></i>Delete Teacher
+                        <i class="fas fa-trash me-1"></i>{{__('Delete Teacher')}}
                     </button>
                 </form>
             </div>
@@ -286,27 +286,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    {{ $teacher->status ? 'Deactivate' : 'Activate' }} Teacher Account
+                    {{ $teacher->status ? 'Deactivate' : 'Activate' }} {{__('Teacher Account')}}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to {{ $teacher->status ? 'deactivate' : 'activate' }} 
-                   {{ $teacher->full_name }}'s account?</p>
+                <p>{{__('Are you sure you want to')}} {{ $teacher->status ? 'deactivate' : 'activate' }} 
+                   {{ $teacher->full_name }}{{__('s account?')}}</p>
                 @if($teacher->status)
-                    <p class="text-danger">This will temporarily suspend the teacher's access to the system.</p>
+                    <p class="text-danger">{{__('This will temporarily suspend the teachers access to the system.')}}</p>
                 @else
-                    <p class="text-success">This will restore the teacher's access to the system.</p>
+                    <p class="text-success">{{__('This will restore the teacher s access to the system.')}}</p>
                 @endif
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                 <form action="{{ route('teachers.toggle-status', $teacher) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <button type="submit" class="btn btn-{{ $teacher->status ? 'danger' : 'success' }}">
                         <i class="fas fa-{{ $teacher->status ? 'ban' : 'check' }} me-1"></i>
-                        {{ $teacher->status ? 'Deactivate' : 'Activate' }} Account
+                        {{ $teacher->status ? 'Deactivate' : 'Activate' }} {{__('Account')}}
                     </button>
                 </form>
             </div>
@@ -420,16 +420,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Assign Subject</h5>
+                <h5 class="modal-title">{{__('Assign Subject')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="{{ route('teachers.assign-subject', $teacher) }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Select Subject</label>
+                        <label class="form-label">{{__('Select Subject')}}</label>
                         <select name="subject_id" class="form-select" required>
-                            <option value="">Choose a subject...</option>
+                            <option value="">{{__('Choose a subject...')}}</option>
                             @foreach($availableSubjects as $subject)
                                 <option value="{{ $subject->id }}">
                                     {{ $subject->name }} ({{ $subject->level->name }})
@@ -439,9 +439,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel')}}</button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus me-1"></i>Assign Subject
+                        <i class="fas fa-plus me-1"></i>{{__('Assign Subject')}}
                     </button>
                 </div>
             </form>
@@ -454,7 +454,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Update Profile Photo</h5>
+                <h5 class="modal-title">{{__('Update Profile Photo')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="{{ route('teachers.update-photo', $teacher) }}" method="POST" enctype="multipart/form-data">
@@ -466,16 +466,16 @@
                          width="150" height="150"
                          style="object-fit: cover;">
                     <div class="mb-3">
-                        <label class="form-label">Choose New Photo</label>
+                        <label class="form-label">{{__('Choose New Photo')}}</label>
                         <input type="file" class="form-control" id="photoInput" name="photo" 
                                accept="image/*" required>
                     </div>
-                    <small class="text-muted">Recommended size: 300x300 pixels</small>
+                    <small class="text-muted">{{__('Recommended size: 300x300 pixels')}}</small>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-upload me-1"></i>Update Photo
+                        <i class="fas fa-upload me-1"></i>{{__('Update Photo')}}
                     </button>
                 </div>
             </form>

@@ -28,20 +28,20 @@
     <!-- Messages Dropdown Menu -->
 
     <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-primary">
-          @if(session('locale') == 'ar')
-              AR
+      <button type="button" class="btn btn-sm btn-dark">
+          @if(session('locale') == 'es')
+             Espanish
           @else
-              EN
+              English
           @endif
       </button>
       <button type="button" class="btn btn-sm btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
           <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu" role="menu">
-          <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">En</a>
+         <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}"> <i class="fas fa-check nav-icon {{ session('locale') != 'es' ? 'visible' : 'invisible' }}"></i> English</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('lang.switch', 'ar') }}">AR</a>
+         <a class="dropdown-item" href="{{ route('lang.switch', 'es') }}">   <i class="fas fa-check nav-icon {{ session('locale') != 'en' ? 'visible' : 'invisible' }}"></i> Espanish</a>
       </div>
   </div>
   
@@ -57,19 +57,19 @@
       </button>
       <div class="dropdown-menu" role="menu">
         <a class="dropdown-item" href="{{ route('profile.view') }}"">
-          <i class="bx bx-log-out-circle"></i> profile
+          <i class="fas fa-user-circle nav-icon"></i> profile
       </a>
     <div class="dropdown-divider"></div>
     
     <a class="dropdown-item" href="{{ route('profile.ChangePassword') }}"">
-      <i class="bx bx-log-out-circle"></i> change password
+      <i class="fas fa-key nav-icon"></i> change password
   </a>
 <div class="dropdown-divider"></div>
  
     @auth
     <a class="dropdown-item" href="{{ route('logout') }}"
        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="bx bx-log-out-circle"></i> Logout
+       <i class="fas fa-sign-out-alt nav-icon"></i>Logout
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

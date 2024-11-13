@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Models\SubjectFile;
 use Illuminate\Http\Request;
+use Spatie\LaravelPdf\Facades\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -80,6 +81,15 @@ class StudentDashboardController extends Controller
         // Lowercase
         $text = strtolower($text);
         return $text;
+    }
+
+
+
+    public function createPdf() {
+
+        Pdf::view('pdf.invoice', ['invoice' => $invoice])
+        ->save('/some/directory/invoice.pdf');
+
     }
     }
 

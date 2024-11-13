@@ -131,3 +131,10 @@ Route::middleware(['auth','roles:student'])->group(function () {
 
     
 });
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'es'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
