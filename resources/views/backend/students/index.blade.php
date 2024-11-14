@@ -2,20 +2,20 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Students Management</h1>
+    <h1 class="mt-4">{{__('Students Management')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item active">Students</li>
+        <li class="breadcrumb-item"><a href="">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item active">{{__('Students')}}</li>
     </ol>
     
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div>
                 <i class="fas fa-users me-1"></i>
-                Students List
+                {{__('Students List')}}
             </div>
             <a href="{{ route('Adminstudent.create') }}" class="btn btn-primary" style="margin-left:600px;">
-                <i class="fas fa-plus me-2"></i>Add New Student
+                <i class="fas fa-plus me-2"></i>{{__('Add New Student')}}
             </a>
         </div>
         <div class="card-body">
@@ -29,11 +29,11 @@
             <table id="studentsTable" class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Student Information</th>
-                        <th>Current Level</th>
-                        <th>Performance</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>{{__('Student Information')}}</th>
+                        <th>{{__('Current Level')}}</th>
+                        <th>{{__('Performance')}}</th>
+                        <th>{{__('Status')}}</th>
+                        <th>{{__('Actions')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +62,7 @@
                                     Since {{ $currentLevel->pivot->enrolled_at }}
                                 </div>
                             @else
-                                <span class="badge bg-secondary">No Active Level</span>
+                                <span class="badge bg-secondary">{{__('No Active Level')}}</span>
                             @endif
                         </td>
                         <td>
@@ -115,7 +115,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Confirm Delete</h5>
+                <h5 class="modal-title">{{__('Confirm Delete')}}</h5>
 <!-- Continuing from previous index.blade.php -->
 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 </div>
@@ -123,21 +123,21 @@
     <img src="{{ $student->photo ? Storage::url($student->photo) : asset('images/default-user.png') }}" 
          class="rounded-circle mb-3" width="100" height="100"
          style="object-fit: cover;">
-    <h5>Delete Student Account</h5>
-    <p>Are you sure you want to delete {{ $student->full_name }}'s account?</p>
+    <h5>{{__('Delete Student Account')}}</h5>
+    <p>{{__('Are you sure you want to delete')}} {{ $student->full_name }}'s {{__('account?')}}</p>
     <div class="text-muted small mb-3">
-        <div>Current Level: {{ $student->currentLevel()?->name ?? 'None' }}</div>
-        <div>Marks Recorded: {{ $student->marks->count() }}</div>
+        <div>{{__('Current Level')}}: {{ $student->currentLevel()?->name ?? 'None' }}</div>
+        <div>{{__('Marks Recorded')}}: {{ $student->marks->count() }}</div>
     </div>
-    <p class="text-danger"><small>This action cannot be undone. All associated data will be permanently deleted.</small></p>
+    <p class="text-danger"><small>{{__('This action cannot be undone. All associated data will be permanently deleted.')}}</small></p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel')}}</button>
     <form action="{{ route('Adminstudent.destroy', $student) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger">
-            <i class="fas fa-trash me-1"></i>Delete Student
+            <i class="fas fa-trash me-1"></i>{{__('Delete Student')}}
         </button>
     </form>
 </div>

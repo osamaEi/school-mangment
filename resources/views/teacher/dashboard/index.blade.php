@@ -1,9 +1,9 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Teacher Dashboard</h1>
+    <h1 class="mt-4">{{__('Teacher Dashboard')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active">{{__('Dashboard')}}</li>
     </ol>
 
     <!-- Basic Info Card -->
@@ -12,7 +12,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-user-circle me-1"></i>
-                    Teacher Profile
+                    {{__('Teacher Profile')}}
                 </div>
                 <div class="card-body text-center">
                     <img src="{{ Auth::user()->getPhotoUrlteacher() }}" 
@@ -20,7 +20,7 @@
                          width="150" height="150">
                     <h5>{{ Auth::user()->full_name }}</h5>
                     <p class="text-muted">
-                        Teaching {{ $subjects_count }} Subjects
+                        {{__('Teaching')}} {{ $subjects_count }} Subjects')}}
                     </p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-book me-1"></i>
-                    My Subjects
+                    {{__('My Subjects')}}
                 </div>
                 <div class="card-body">
                     <div class="list-group">
@@ -56,17 +56,17 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-star me-1"></i>
-            Recent Marks Given
+            {{__('Recent Marks Given')}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Student</th>
-                            <th>Subject</th>
-                            <th>Mark</th>
-                            <th>Date</th>
+                            <th>{{__('Student')}}</th>
+                            <th>{{__('Subject')}}</th>
+                            <th>{{__('Mark')}}</th>
+                            <th>{{__('Date')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,13 +98,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="{{route('teacher.showStudents')}}" class="btn btn-primary w-100 mb-2">
-                        <i class="fas fa-plus-circle me-2"></i>Add Mark
+                        <i class="fas fa-plus-circle me-2"></i>{{__('Add Mark')}}
                     </a>
                 </div>
                 
                 <div class="col-md-6">
                     <a href="{{route('teacher.showStudents')}}" class="btn btn-info w-100 mb-2 text-white">
-                        <i class="fas fa-users me-2"></i>View Students
+                        <i class="fas fa-users me-2"></i>{{__('View Students')}}
                     </a>
                 </div>
             </div>

@@ -23,7 +23,104 @@
     "Profile": "Perfil",
     "Logout": "Cerrar sesión",
     "Print Report": "Imprimir Informe",
- 
+    
+        "Students Management": "Gestión de Estudiantes",
+    
+        "Students List": "Lista de Estudiantes",
+        "Add New Student": "Agregar Nuevo Estudiante",
+        "Student Information": "Información del Estudiante",
+        "Current Level": "Nivel Actual",
+        "Performance": "Rendimiento",
+      
+        "No Active Level": "Sin Nivel Activo",
+      
+        "Delete Student Account": "Eliminar Cuenta del Estudiante",
+    
+        "account?": "cuenta?",
+        "Current Level:": "Nivel Actual:",
+        "Marks Recorded": "Notas Registradas",
+        "This action cannot be undone. All associated data will be permanently deleted.": "Esta acción no se puede deshacer. Todos los datos asociados se eliminarán permanentemente.",
+        "Delete Student": "Eliminar Estudiante",
+        "Failed to update status": "Error al actualizar el estado",
+        
+            "Student Details": "Detalles del Estudiante",
+            
+            "Student Profile": "Perfil del Estudiante",
+           
+            "Student ID": "ID del Estudiante",
+          
+            "Marks": "Notas",
+            "Average": "Promedio",
+            "Add Mark for": "Agregar Calificación para",
+    "Remarks": "Comentarios",
+    "Save Mark": "Guardar Calificación",
+                "Teacher Dashboard": "Panel de Control del Profesor",
+                "Teacher Profile": "Perfil del Profesor",
+                
+                    "Subject Details": "Detalles de la Asignatura",
+                    "Total Students": "Total de Estudiantes",
+                    "Total Marks Given": "Total de Calificaciones Asignadas",
+            
+             
+              
+                    "Marks Count": "Cantidad de Calificaciones",
+              
+                    "Not yet": "Aún no",
+                    "No marks": "Sin calificaciones",
+                "My Subjects": "Mis Asignaturas",
+            
+                "Recent Marks Given": "Calificaciones Recientes",
+                "Student": "Estudiante",
+          
+                "Mark": "Calificación",
+             
+                "Quick Actions": "Acciones Rápidas",
+                "Add Mark": "Agregar Calificación",
+                "View Students": "Ver Estudiantes",
+           
+            
+            "years": "años",
+            
+                "Welcome": "Bienvenido",
+                "Your academic dashboard": "Tu panel académico",
+                "Average Score": "Promedio",
+                "Total Subjects": "Total de materias",
+          
+                "Current Subjects": "Materias actuales",
+                "Teacher:": "Profesor:",
+                "Subject Files": "Archivos de materias",
+                "File Title": "Título del archivo",
+                "Uploaded By": "Subido por",
+                "Upload Date": "Fecha de subida",
+                "Action": "Acción",
+                "Download": "Descargar",
+                "No files available": "No hay archivos disponibles",
+            
+            
+            
+        
+            "Change Level": "Cambiar Nivel",
+            "Enrolled": "Inscrito",
+            "This student is not currently enrolled in any level": "Este estudiante no está inscrito actualmente en ningún nivel",
+            "Academic Performance": "Rendimiento Académico",
+            "Recent Marks": "Notas Recientes",
+            "Subject": "Materia",
+            "Score": "Puntuación",
+            "Teacher": "Profesor",
+            "Date": "Fecha",
+            "No marks recorded yet": "No hay notas registradas aún",
+            "Change Student Level": "Cambiar Nivel del Estudiante",
+            "Select New Level": "Seleccionar Nuevo Nivel",
+            "Choose a level": "Elige un nivel",
+            "This will mark the current level": "Esto marcará el nivel actual",
+            "as completed": "como completado",
+            "Save": "Guardar",
+            "Choose New Photo": "Elige una Nueva Foto",
+            "Maximum file size: 2MB": "Tamaño máximo de archivo: 2MB",
+            "Update Photo": "Actualizar Foto",
+        
+        
+    
     "Level Statistics": "Estadísticas de Nivel",
     "Level": "Nivel",
     "Progress": "Progreso",

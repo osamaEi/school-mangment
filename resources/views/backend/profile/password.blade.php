@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h2 class="mb-2 text-primary">Change Password</h2>
+                <h2 class="mb-2 text-primary">{{__('Change Password')}}</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
@@ -51,7 +51,7 @@
                             </p>
                             <div class="d-flex justify-content-center gap-2">
                                 <span class="badge bg-primary-subtle text-primary px-3 py-2">
-                                    <i class="fas fa-shield-alt me-1"></i>Security Settings
+                                    <i class="fas fa-shield-alt me-1"></i>{{__('Security Settings')}}
                                 </span>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                 <div class="progress" style="height: 5px;">
                                     <div class="progress-bar" role="progressbar" style="width: 0%"></div>
                                 </div>
-                                <small class="text-muted mt-1 d-block">Password strength: <span id="strength-text">Poor</span></small>
+                                <small class="text-muted mt-1 d-block">{{__('Password strength')}}: <span id="strength-text">Poor</span></small>
                             </div>
                         </div>
 
@@ -147,7 +147,7 @@
                                 <i class="fas fa-save me-2"></i>{{__('Save Changes')}}
                             </button>
                             <button type="reset" class="btn btn-light btn-lg px-5 py-2 ms-2">
-                                <i class="fas fa-undo me-2"></i>Reset
+                                <i class="fas fa-undo me-2"></i>{{__('Reset')}}
                             </button>
                         </div>
                     </form>

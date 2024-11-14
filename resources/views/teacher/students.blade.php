@@ -1,10 +1,10 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">My Students</h1>
+    <h1 class="mt-4">{{__('My Students')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Students</li>
+        <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard') }}">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item active">{{__('Students')}}</li>
     </ol>
 
     <!-- Students by Subject -->
@@ -18,11 +18,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Student</th>
-                            <th>Marks Count</th>
-                            <th>Average Score</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>{{__('Student')}}</th>
+                            <th>{{__('Marks Count')}}</th>
+                            <th>{{__('Average Score')}}</th>
+                            <th>{{__('Status')}}</th>
+                            <th>{{__('Actions')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +45,7 @@
                                         {{ number_format($student->average_score, 1) }}
                                     </span>
                                 @else
-                                    <span class="badge bg-secondary">No marks</span>
+                                    <span class="badge bg-secondary">{{__('No marks')}}</span>
                                 @endif
                             </td>
                             <td>{!! $student->status_badge !!}</td>
@@ -56,7 +56,7 @@
                                         data-bs-target="#addMarkModal"
                                         data-student-id="{{ $student->id }}"
                                         data-student-name="{{ $student->full_name }}">
-                                    <i class="fas fa-plus"></i> Add Mark
+                                    <i class="fas fa-plus"></i> {{__('Add Mark')}}
                                 </button>
                                 @endif
                             </td>

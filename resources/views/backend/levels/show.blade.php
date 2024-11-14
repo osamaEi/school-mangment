@@ -2,10 +2,10 @@
 @section('content')
 <div class="container-fluid px-4">
     <!-- Header Section -->
-    <h1 class="mt-4">Level Details</h1>
+    <h1 class="mt-4">{{__('Level Details')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('Adminlevel.index') }}">Levels</a></li>
+        <li class="breadcrumb-item"><a href="">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('Adminlevel.index') }}">{{__('Levels')}}</a></li>
         <li class="breadcrumb-item active">{{ $level->name }}</li>
     </ol>
 
@@ -32,33 +32,33 @@
         <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Level Information</h5>
+                    <h5 class="mb-0">{{__('Level Information')}}</h5>
                     <button class="btn btn-sm btn-warning" 
                             data-bs-toggle="modal" 
                             data-bs-target="#editLevelModal{{ $level->id }}">
-                        <i class="fas fa-edit me-1"></i>Edit Level
+                        <i class="fas fa-edit me-1"></i>{{__('Edit Level')}}
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
-                        <label class="small text-muted">Level Name</label>
+                        <label class="small text-muted">{{__('Level Name')}}</label>
                         <div class="h5">{{ $level->name }}</div>
                     </div>
                     <div class="mb-4">
-                        <label class="small text-muted">Description</label>
+                        <label class="small text-muted">{{__('Description')}}</label>
                         <div>{{ $level->description ?? 'No description available' }}</div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="text-center mb-3">
                                 <div class="h4 mb-0">{{ $level->subjects->count() }}</div>
-                                <div class="small text-muted">Total Subjects</div>
+                                <div class="small text-muted">{{__('Total Subjects')}}</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-center mb-3">
                                 <div class="h4 mb-0">{{ $level->students->count() }}</div>
-                                <div class="small text-muted">Total Students</div>
+                                <div class="small text-muted">{{__('Total Students')}}</div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                     <div>
                                         <div class="fw-bold">{{ $student->full_name }}</div>
                                         <div class="small text-muted">
-                                            Enrolled: 
+                                            {{__('Enrolled')}}: 
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
                         @empty
                             <div class="text-center py-4 text-muted">
                                 <i class="fas fa-user-graduate fa-2x mb-2"></i>
-                                <p class="mb-0">No students enrolled yet</p>
+                                <p class="mb-0">{{__('No students enrolled yet')}}</p>
                             </div>
                         @endforelse
                     </div>
@@ -109,7 +109,7 @@
                     <button class="btn btn-primary" 
                             data-bs-toggle="modal" 
                             data-bs-target="#createSubjectModal">
-                        <i class="fas fa-plus me-1"></i>Add Subject
+                        <i class="fas fa-plus me-1"></i>{{__('Add Subject')}}
                     </button>
                 </div>
                 <div class="card-body">
@@ -130,14 +130,14 @@
                                                         <button class="dropdown-item" 
                                                                 data-bs-toggle="modal" 
                                                                 data-bs-target="#editSubjectModal{{ $subject->id }}">
-                                                            <i class="fas fa-edit me-2"></i>Edit Subject
+                                                            <i class="fas fa-edit me-2"></i>{{__('Edit Subject')}}
                                                         </button>
                                                     </li>
                                                     <li>
                                                         <button class="dropdown-item" 
                                                                 data-bs-toggle="modal" 
                                                                 data-bs-target="#uploadFileModal{{ $subject->id }}">
-                                                            <i class="fas fa-upload me-2"></i>Upload File
+                                                            <i class="fas fa-upload me-2"></i>{{__('Upload File')}}
                                                         </button>
                                                     </li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -145,7 +145,7 @@
                                                         <button class="dropdown-item text-danger" 
                                                                 data-bs-toggle="modal" 
                                                                 data-bs-target="#deleteSubjectModal{{ $subject->id }}">
-                                                            <i class="fas fa-trash me-2"></i>Delete Subject
+                                                            <i class="fas fa-trash me-2"></i>{{__('Delete Subject')}}
                                                         </button>
                                                     </li>
                                                 </ul>
@@ -201,8 +201,8 @@
                             <div class="col-12">
                                 <div class="text-center py-5 text-muted">
                                     <i class="fas fa-book fa-3x mb-3"></i>
-                                    <h5>No Subjects Added Yet</h5>
-                                    <p>Click the "Add Subject" button to add your first subject.</p>
+                                    <h5>{{__('No Subjects Added Yet')}}</h5>
+                                    <p>{{__('Click the "Add Subject" button to add your first subject.')}}</p>
                                 </div>
                             </div>
                         @endforelse

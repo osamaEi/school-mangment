@@ -183,11 +183,11 @@
 }
 </style>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Student Details</h1>
+    <h1 class="mt-4">{{__('Student Details')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('Adminstudent.index') }}">Students</a></li>
-        <li class="breadcrumb-item active">Student Details</li>
+        <li class="breadcrumb-item"><a href="">{{__('Dashboard')}}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('Adminstudent.index') }}">{{__('Students')}}</a></li>
+        <li class="breadcrumb-item active">{{__('Student Details')}}</li>
     </ol>
 
     @if(session('success'))
@@ -205,7 +205,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <i class="fas fa-user-graduate me-1"></i>
-                        Student Profile
+                        {{__('Student Profile')}}
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" 
@@ -232,18 +232,18 @@
                     </div>
                     <h4>{{ $student->full_name }}</h4>
                     <p class="text-muted mb-4">
-                        <i class="fas fa-id-card me-2"></i>Student ID: {{ $student->id }}
+                        <i class="fas fa-id-card me-2"></i>{{__('Student ID')}}: {{ $student->id }}
                     </p>
 
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <a href="mailto:{{ $student->email }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-envelope me-1"></i>Email
+                            <i class="fas fa-envelope me-1"></i>{{__('Email')}}
                         </a>
                         <a href="tel:{{ $student->phone }}" class="btn btn-sm btn-info text-white">
-                            <i class="fas fa-phone me-1"></i>Call
+                            <i class="fas fa-phone me-1"></i>{{__('Call')}}
                         </a>
                         <a href="{{ route('Adminstudent.edit', $student) }}" class="btn btn-sm btn-warning">
-                            <i class="fas fa-edit me-1"></i>Edit
+                            <i class="fas fa-edit me-1"></i>{{__('Edit')}}
                         </a>
                     </div>
 
@@ -252,19 +252,19 @@
                             <div class="col-4">
                                 <div class="text-center mb-3">
                                     <div class="fw-bold h4 mb-0">{{ $student->marks->count() }}</div>
-                                    <div class="small text-muted">Marks</div>
+                                    <div class="small text-muted">{{__('Marks')}}</div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="text-center mb-3">
                                     <div class="fw-bold h4 mb-0">{{ number_format($averageScore, 1) }}%</div>
-                                    <div class="small text-muted">Average</div>
+                                    <div class="small text-muted">{{__('Average')}}</div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="text-center mb-3">
                                     <div class="fw-bold h4 mb-0">{{ $student->studentLevels->count() }}</div>
-                                    <div class="small text-muted">Levels</div>
+                                    <div class="small text-muted">{{__('Levels')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -276,28 +276,28 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-address-card me-1"></i>
-                    Contact Information
+                    {{__('Contact Information')}}
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <div class="small text-muted">Email</div>
+                            <div class="small text-muted">{{__('Email')}}</div>
                             <div>{{ $student->email }}</div>
                         </li>
                         <li class="list-group-item">
-                            <div class="small text-muted">Phone</div>
+                            <div class="small text-muted">{{__('Phone')}}</div>
                             <div>{{ $student->phone }}</div>
                         </li>
                         <li class="list-group-item">
-                            <div class="small text-muted">Country</div>
+                            <div class="small text-muted">{{__('Country')}}</div>
                             <div>{{ $student->country }}</div>
                         </li>
                         <li class="list-group-item">
-                            <div class="small text-muted">Date of Birth</div>
-                            <div>{{ $student->dob }} ({{ $student->age }} years)</div>
+                            <div class="small text-muted">{{__('Date of Birth')}}</div>
+                            <div>{{ $student->dob }} ({{ $student->age }} {{__('years')}})</div>
                         </li>
                         <li class="list-group-item">
-                            <div class="small text-muted">Joined Date</div>
+                            <div class="small text-muted">{{__('Joined Date')}}</div>
                             <div>{{ $student->created_at }}</div>
                         </div>
                     </ul>
@@ -311,12 +311,12 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <i class="fas fa-graduation-cap me-1"></i>
-                        Current Level
+                        {{__('Current Level')}}
                     </div>
                     <button class="btn btn-sm btn-primary" 
                             data-bs-toggle="modal" 
                             data-bs-target="#changeLevelModal">
-                        <i class="fas fa-exchange-alt me-1"></i>Change Level
+                        <i class="fas fa-exchange-alt me-1"></i>{{__('Change Level')}}
                     </button>
                 </div>
                 <div class="card-body">
@@ -325,7 +325,7 @@
                             <div class="col-md-6">
                                 <h5 class="mb-1">{{ $currentLevel->name }}</h5>
                                 <p class="text-muted mb-0">
-                                    Enrolled: {{ $currentLevel->pivot->enrolled_at }}
+                                    {{__('Enrolled')}}: {{ $currentLevel->pivot->enrolled_at }}
                                 </p>
                             </div>
                        
@@ -335,8 +335,8 @@
                             <div class="text-muted mb-3">
                                 <i class="fas fa-exclamation-circle fa-3x"></i>
                             </div>
-                            <h6>No Active Level</h6>
-                            <p class="text-muted">This student is not currently enrolled in any level.</p>
+                            <h6>{{__('No Active Level')}}</h6>
+                            <p class="text-muted">{{__('This student is not currently enrolled in any level')}}.</p>
                         </div>
                     @endif
                 </div>
@@ -346,7 +346,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-line me-1"></i>
-                    Academic Performance
+                    {{__('Academic Performance')}}
                 </div>
                 <div class="card-body">
                     <canvas id="performanceChart" height="200"></canvas>
@@ -357,17 +357,17 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-star me-1"></i>
-                    Recent Marks
+                    {{__('Recent Marks')}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Teacher</th>
-                                    <th>Date</th>
+                                    <th>{{__('Subject')}}</th>
+                                    <th>{{__('Score')}}</th>
+                                    <th>{{__('Teacher')}}</th>
+                                    <th>{{__('Date')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -385,7 +385,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="4" class="text-center py-4">
-                                            <div class="text-muted">No marks recorded yet</div>
+                                            <div class="text-muted">{{__('No marks recorded yet')}}</div>
                                         </td>
                                     </tr>
                                 @endforelse
@@ -404,16 +404,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Change Student Level</h5>
+                <h5 class="modal-title">{{__('Change Student Level')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="{{ route('Adminstudent.change-level', $student) }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Select New Level</label>
+                        <label class="form-label">{{__('Select New Level')}}</label>
                         <select name="level_id" class="form-select" required>
-                            <option value="">Choose a level...</option>
+                            <option value="">{{__('Choose a level')}}...</option>
                             @foreach(App\Models\Level::all() as $level)
                                 <option value="{{ $level->id }}"
                                     {{ $student->currentLevel()?->id == $level->id ? 'selected' : '' }}>
@@ -425,15 +425,15 @@
                     @if($student->currentLevel())
                         <div class="alert alert-warning">
                             <i class="fas fa-exclamation-triangle me-2"></i>
-                            This will mark the current level ({{ $student->currentLevel()->name }}) as completed.
+                            {{__('This will mark the current level')}} ({{ $student->currentLevel()->name }}) as completed')}}.
                         </div>
                     @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-1"></i>Change Level
+                        <i class="fas fa-save me-1"></i>{{__('Change Level')}}
                     </button>
                 </div>
             </form>
@@ -445,7 +445,7 @@ class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Update Profile Photo</h5>
+                <h5 class="modal-title">{{__('Update Profile Photo')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="{{ route('Adminstudent.update-photo', $student) }}" method="POST" enctype="multipart/form-data">
@@ -458,17 +458,17 @@ class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                          width="150" height="150"
                          style="object-fit: cover;">
                     <div class="mb-3">
-                        <label class="form-label">Choose New Photo</label>
+                        <label class="form-label">{{__('Choose New Photo')}}</label>
                         <input type="file" class="form-control" name="photo" 
                                accept="image/*" required 
                                onchange="previewImage(this)">
-                        <div class="form-text">Maximum file size: 2MB</div>
+                        <div class="form-text">{{__('Maximum file size: 2MB')}}</div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-upload me-1"></i>Update Photo
+                        <i class="fas fa-upload me-1"></i>{{__('Update Photo')}}
                     </button>
                 </div>
             </form>

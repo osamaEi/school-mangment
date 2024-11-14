@@ -1,9 +1,9 @@
 @extends('admin.index')
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Subject Details</h1>
+    <h1 class="mt-4">{{__('Subject Details')}}</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard') }}">{{__('Dashboard')}}</a></li>
         <li class="breadcrumb-item active">{{ $subject->name }}</li>
     </ol>
 
@@ -17,15 +17,15 @@
             <div class="row">
                 <div class="col-md-4 text-center mb-3">
                     <div class="h2 mb-0">{{ $students->count() }}</div>
-                    <div class="text-muted">Total Students</div>
+                    <div class="text-muted">Total Students')}}</div>
                 </div>
                 <div class="col-md-4 text-center mb-3">
                     <div class="h2 mb-0">{{ $marks->count() }}</div>
-                    <div class="text-muted">Total Marks Given</div>
+                    <div class="text-muted">{{__('Total Marks Given')}}</div>
                 </div>
                 <div class="col-md-4 text-center mb-3">
                     <div class="h2 mb-0">{{ number_format($marks->avg('score'), 1) }}%</div>
-                    <div class="text-muted">Average Score</div>
+                    <div class="text-muted">{{__('Average Score')}}</div>
                 </div>
             </div>
         </div>
@@ -36,18 +36,18 @@
             <div class="card shadow-sm">
                 
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Subject Files</h5>
+                    <h5 class="card-title mb-0">{{__('Subject Files')}}</h5>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>File Title</th>
-                                    <th>Uploaded By</th>
-                                    <th>Upload Date</th>
-                                    <th>Action</th>
+                                    <th>{{__('Subject')}}</th>
+                                    <th>{{__('File Title')}}</th>
+                                    <th>{{__('Uploaded By')}}</th>
+                                    <th>{{__('Upload Date')}}</th>
+                                    <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,14 +60,14 @@
                                         <td>
                                             <a href="{{ route('student.download.file', $file->id) }}" 
                                                class="btn btn-sm btn-primary">
-                                                <i class="fas fa-download me-1"></i>Download
+                                                <i class="fas fa-download me-1"></i>{{__('Download')}}
                                             </a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="5" class="text-center py-3">
-                                            No files available
+                                            {{__('No files available')}}
                                         </td>
                                     </tr>
                                 @endforelse
@@ -87,7 +87,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Mark for <span id="studentName"></span></h5>
+                <h5 class="modal-title">{{__('Add Mark for')}} <span id="studentName"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="addMarkForm" method="POST">
@@ -97,17 +97,17 @@
                 
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Score *</label>
+                        <label class="form-label">{{__('Score')}} *</label>
                         <input type="number" name="score" class="form-control" required min="0" max="100">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Remarks</label>
+                        <label class="form-label">{{__('Remarks')}}</label>
                         <textarea name="remarks" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Mark</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
+                    <button type="submit" class="btn btn-primary">{{__('Save Mark')}}</button>
                 </div>
             </form>
         </div>

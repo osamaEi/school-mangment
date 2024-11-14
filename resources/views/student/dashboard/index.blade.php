@@ -4,8 +4,8 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
         <div>
-            <h1 class="h3 mb-0">Welcome, {{ Auth::user()->first_name }}!</h1>
-            <p class="text-muted">Your academic dashboard</p>
+            <h1 class="h3 mb-0">{{__('Welcome')}}, {{ Auth::user()->first_name }}!</h1>
+            <p class="text-muted">{{__('Your academic dashboard')}}</p>
         </div>
         <div>
             <span class="badge bg-{{ Auth::user()->status ? 'success' : 'danger' }}">
@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="h6 text-uppercase">Current Level</div>
+                            <div class="h6 text-uppercase">{{__('Current Level')}}</div>
                             <div class="h4 mb-0">
                                 {{ $currentLevel ? $currentLevel->name : 'Not Enrolled' }}
                             </div>
@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="h6 text-uppercase">Average Score</div>
+                            <div class="h6 text-uppercase">{{__('Average Score')}}</div>
                             <div class="h4 mb-0">{{ number_format($averageScore, 1) }}%</div>
                         </div>
                         <i class="fas fa-chart-line fa-2x opacity-50"></i>
@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="h6 text-uppercase">Total Subjects</div>
+                            <div class="h6 text-uppercase">{{__('Total Subjects')}}</div>
                             <div class="h4 mb-0">{{ $totalSubjects }}</div>
                         </div>
                         <i class="fas fa-book fa-2x opacity-50"></i>
@@ -69,17 +69,17 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Recent Marks</h5>
+                    <h5 class="card-title mb-0">{{__('Recent Marks')}}</h5>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Subject</th>
-                                    <th>Score</th>
-                                    <th>Teacher</th>
-                                    <th>Date</th>
+                                    <th>{{__('Subject')}}</th>
+                                    <th>{{__('Score')}}</th>
+                                    <th>{{__('Teacher')}}</th>
+                                    <th>{{__('Date')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +96,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center py-3">No marks recorded yet</td>
+                                        <td colspan="4" class="text-center py-3">{{__('No marks recorded yet')}}</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -110,7 +110,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Current Subjects</h5>
+                    <h5 class="card-title mb-0">{{__('Current Subjects')}}</h5>
                 </div>
                 <div class="card-body p-0">
                     <div class="list-group list-group-flush">
@@ -122,7 +122,7 @@
                                         @if($subject->teacher)
 
                                         <small class="text-muted">
-                                            Teacher: {{ $subject->teacher->first_name }}
+                                            {{__('Teacher')}}: {{ $subject->teacher->first_name }}
                                         </small>
 
                                         @endif
@@ -132,7 +132,7 @@
                             </div>
                         @empty
                             <div class="list-group-item text-center py-3">
-                                No subjects assigned
+                                {{__('No subjects assigned')}}
                             </div>
                         @endforelse
                     </div>
@@ -144,18 +144,18 @@
 <div class="col-12 mt-4">
     <div class="card shadow-sm">
         <div class="card-header">
-            <h5 class="card-title mb-0">Subject Files</h5>
+            <h5 class="card-title mb-0">{{__('Subject Files')}}</h5>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Subject</th>
-                            <th>File Title</th>
-                            <th>Uploaded By</th>
-                            <th>Upload Date</th>
-                            <th>Action</th>
+                            <th>{{__('Subject')}}</th>
+                            <th>{{__('File Title')}}</th>
+                            <th>{{__('Uploaded By')}}</th>
+                            <th>{{__('Upload Date')}}</th>
+                            <th>{{__('Action')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -168,14 +168,14 @@
                                 <td>
                                     <a href="{{ route('student.download.file', $file->id) }}" 
                                        class="btn btn-sm btn-primary">
-                                        <i class="fas fa-download me-1"></i>Download
+                                        <i class="fas fa-download me-1"></i>{{__('Download')}}
                                     </a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="5" class="text-center py-3">
-                                    No files available
+                                    {{__('No files available')}}
                                 </td>
                             </tr>
                         @endforelse

@@ -6,9 +6,9 @@
 
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">All Levels</h5>
+            <h5 class="mb-0">{{__('All Levels')}}</h5>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLevelModal">
-                <i class="fas fa-plus me-2"></i>Add New Level
+                <i class="fas fa-plus me-2"></i>{{__('Add New Level')}}
             </button>
         </div>
 
