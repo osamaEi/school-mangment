@@ -2,11 +2,11 @@
     <table class="table table-bordered table-hover">
         <thead class="table-light">
             <tr>
-                <th>Level Name</th>
-                <th>Description</th>
-                <th>Subjects</th>
-                <th>Students</th>
-                <th width="150">Actions</th>
+                <th>{{__('Level Name')}}</th>
+                <th>{{__('Description')}}</th>
+                <th>{{__('Subjects')}}</th>
+                <th>{{__('Students')}}</th>
+                <th width="150">{{__('Actions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -16,12 +16,12 @@
                     <td>{{ $level->description }}</td>
                     <td>
                         <span class="badge bg-info">
-                            {{ $level->subjects->count() }} Subjects
+                            {{ $level->subjects->count() }} {{__('Subjects')}}
                         </span>
                     </td>
                     <td>
                         <span class="badge bg-primary">
-                            {{ $level->students->count() }} Students
+                            {{ $level->students->count() }} {{__('Students')}}
                         </span>
                     </td>
                     <td>
@@ -52,7 +52,7 @@
                 <tr>
                     <td colspan="5" class="text-center py-4">
                         <div class="text-muted">
-                            <i class="fas fa-info-circle me-1"></i>No levels found
+                            <i class="fas fa-info-circle me-1"></i>{{__('No levels found')}}
                         </div>
                     </td>
                 </tr>

@@ -60,7 +60,64 @@
                     "Subject Details": "Detalles de la Asignatura",
                     "Total Students": "Total de Estudiantes",
                     "Total Marks Given": "Total de Calificaciones Asignadas",
-            
+                    
+                        "Change Password": "Cambiar Contraseña",
+                        "Old Password": "Contraseña Antigua",
+                        "New Password": "Nueva Contraseña",
+                        
+                            "All Levels": "Todos los Niveles",
+                            "Add New Level": "Agregar Nuevo Nivel",
+                            "Level Details": "Detalles del Nivel",
+                           
+                            "Level Information": "Información del Nivel",
+                            "Edit Level": "Editar Nivel",
+                            "Level Name": "Nombre del Nivel",
+                            "Description": "Descripción",
+                            "No description available": "No hay descripción disponible",
+                           
+                            "Enrolled Students": "Estudiantes Inscritos",
+                           
+                            "No students enrolled yet": "No hay estudiantes inscritos aún",
+                        
+                            "Add Subject": "Agregar Asignatura",
+                            "Edit Subject": "Editar Asignatura",
+                            "Upload File": "Subir Archivo",
+                            "Delete Subject": "Eliminar Asignatura",
+                            "Files": "Archivos",
+                          
+                            "No Subjects Added Yet": "No se han añadido asignaturas aún",
+                            "Click the \"Add Subject\" button to add your first subject.": "Haz clic en el botón \"Agregar Asignatura\" para añadir tu primera asignatura.",
+                            "File deleted successfully": "Archivo eliminado con éxito",
+                            "Failed to delete file": "Error al eliminar el archivo",
+                        
+                        
+                        "Enter your current password": "Ingrese su contraseña actual",
+                        "Enter your new password": "Ingrese su nueva contraseña",
+                        "Confirm your new password": "Confirme su nueva contraseña",
+                        "Password strength": "Fortaleza de la contraseña",
+                        "Poor": "Débil",
+                        "Fair": "Aceptable",
+                        "Good": "Buena",
+                        "Strong": "Fuerte",
+                        "Security Settings": "Configuración de Seguridad",
+                    
+                    
+                        "Manage your personal details and account settings": "Administre sus detalles personales y configuraciones de cuenta",
+                        "Click the camera icon to update your profile picture": "Haga clic en el ícono de la cámara para actualizar su foto de perfil",
+                        "Name Information": "Información del Nombre",
+                     
+                        "Family Name 2": "Apellido Materno",
+                        "Contact Details": "Detalles de Contacto",
+                 
+                        "Personal Details": "Detalles Personales",
+                      
+                   
+                        "Age": "Edad",
+                        "Address": "Dirección",
+                        "Save Changes": "Guardar Cambios",
+                        "Reset": "Restablecer",
+                    
+                    
              
               
                     "Marks Count": "Cantidad de Calificaciones",
@@ -209,9 +266,25 @@
         "Activate Teacher": "Activar Maestro",
         "Deactivate Teacher": "Desactivar Maestro",
         "Are you sure you want to": "¿Estás seguro de que quieres",
-        "This will temporarily suspend the teacher's access.": "Esto suspenderá temporalmente el acceso del maestro."
+        "This will temporarily suspend the teacher's access.": "Esto suspenderá temporalmente el acceso del maestro.",
     
-    
+        
+            "Add New Subject": "Agregar nueva asignatura",
+            "Subject Name": "Nombre de la asignatura",
+          
+            "Save Subject": "Guardar asignatura",
+           
+            "Are you sure you want to delete this File?": "¿Está seguro de que desea eliminar este archivo?",
+            "Delete Level": "Eliminar nivel",
+           
+            "Update Subject": "Actualizar asignatura",
+       
+            "Update Level": "Actualizar nivel",
+          
+            "File": "Archivo",
+            "Allowed files: PDF, DOC, DOCX, XLS, XLSX (Max: 10MB)": "Archivos permitidos: PDF, DOC, DOCX, XLS, XLSX (Máx: 10MB)"
+        
+        
 
 
 }
