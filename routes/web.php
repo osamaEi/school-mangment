@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\languageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectFileController;
@@ -45,6 +46,8 @@ Route::middleware(['auth','roles:admin'])->group(function () {
     Route::resource('Adminlevel', LevelController::class);
     Route::resource('Adminsubject', SubjectController::class);
     Route::resource('Adminsubject-file', SubjectFileController::class);
+
+    Route::resource('employee', EmployeeController::class);
 
 
     Route::resource('Adminteacher', TeacherController::class);

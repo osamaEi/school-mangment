@@ -82,7 +82,7 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{route('Adminlevel.index')}}" class="nav-link">
+                <a href="{{route('employee.index')}}" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p> {{__('Employees')}}</p>
                 </a>

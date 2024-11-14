@@ -282,9 +282,23 @@
             "Update Level": "Actualizar nivel",
           
             "File": "Archivo",
-            "Allowed files: PDF, DOC, DOCX, XLS, XLSX (Max: 10MB)": "Archivos permitidos: PDF, DOC, DOCX, XLS, XLSX (Máx: 10MB)"
+            "Allowed files: PDF, DOC, DOCX, XLS, XLSX (Max: 10MB)": "Archivos permitidos: PDF, DOC, DOCX, XLS, XLSX (Máx: 10MB)",
         
-        
+            
+                "Create User": "Crear Usuario",
+                "Enter first name": "Ingrese nombre",
+              
+                "Enter email": "Ingrese correo electrónico",
+               
+                "Enter phone number": "Ingrese número de teléfono",
+                "Enter age": "Ingrese edad",
+                "Role": "Rol",
+                "Admin": "Administrador",
+                "Manager": "Gerente",
+                "Enter password": "Ingrese contraseña",
+                "Confirm password": "Confirme contraseña"
+            
+            
 
 
 }
